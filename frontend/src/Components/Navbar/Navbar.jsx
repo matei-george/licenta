@@ -18,11 +18,11 @@ export const Navbar = () => {
             <p className='navbar__title'>Components Shop</p>
         </div>
         <ul className='navbar__menu'>
-            <li className='menu__item' onClick={()=>{setMenu("acasa")}}><Link to='/'>Acasa</Link>{menu==="acasa"?<hr/>:<></>}</li>
-            <li className='menu__item' onClick={()=>{setMenu("componente")}}><Link to='/componente'>Componente</Link>{menu==="componente"?<hr/>:<></>}</li>
-            <li className='menu__item' onClick={()=>{setMenu("pagini")}}><Link to='/pagini'>Pagini</Link>{menu==="pagini"?<hr/>:<></>}</li>
-            <li className='menu__item' onClick={()=>{setMenu("despre")}}><Link to='/despre'>Despre</Link>{menu==="despre"?<hr/>:<></>}</li>
-            <li className='menu__item' onClick={()=>{setMenu("contact")}}><Link to='/contact'>Contact</Link>{menu==="contact"?<hr/>:<></>}</li>
+            <li className='menu__item' onClick={()=>{setMenu("acasa")}}><Link style={{textDecoration:'none'}} to='/'>Acasa</Link>{menu==="acasa"?<hr/>:<></>}</li>
+            <li className='menu__item' onClick={()=>{setMenu("componente")}}><Link style={{textDecoration:'none'}} to='/componente'>Componente</Link>{menu==="componente"?<hr/>:<></>}</li>
+            <li className='menu__item' onClick={()=>{setMenu("pagini")}}><Link style={{textDecoration:'none'}} to='/pagini'>Pagini</Link>{menu==="pagini"?<hr/>:<></>}</li>
+            <li className='menu__item' onClick={()=>{setMenu("despre")}}><Link style={{textDecoration:'none'}} to='/despre'>Despre</Link>{menu==="despre"?<hr/>:<></>}</li>
+            <li className='menu__item' onClick={()=>{setMenu("contact")}}><Link style={{textDecoration:'none'}} to='/contact'>Contact</Link>{menu==="contact"?<hr/>:<></>}</li>
         </ul>
         <div className="navbar__login-card">
           <Link to='/login'><button className='login__button'>Login</button></Link>
