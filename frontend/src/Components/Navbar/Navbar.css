@@ -1,0 +1,23 @@
+.navbar {
+   position: relative;
+   background-color: var(--modal-bg);
+}
+
+.navbar__logo {
+   height: 50px;
+   transform: scale(2.25);
+   position: relative;
+   left: 27px;
+}
+
+.navbar__title {
+   font-family: var(--crimson);
+}
+
+.nav-link {
+   font-family: var(--crimson);
+}
+
+.navbar__icons {
+   height: 25px;
+}
