@@ -1,0 +1,26 @@
+h3 {
+   color: var(--alt-text-clr);
+}
+
+a {
+   font-family: var(--crimson);
+}
+
+.footer__icon {
+   height: 30px;
+}
+
+p:last-of-type {
+   color: var(--alt-text-clr);
+}
+
+.footer {
+   border-top: 2px solid lightgray;
+}
+.footer > div {
+   width: 65vw;
+}
+
+.footer__link:hover {
+   color: var(--accent-3);
+}
