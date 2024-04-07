@@ -1,8 +1,9 @@
-h3,
-p:last-of-type {
+.footer-tag {
    color: var(--alt-text-clr);
 }
-
+.about {
+   color: var(--alt-text-clr);
+}
 a {
    font-family: var(--inter);
 }

@@ -69,7 +69,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold mb-6 pl-5">Urmărește-ne</h3>
+               <h3 className="text-lg font-semibold mb-6 pl-5 footer-tag">Urmărește-ne</h3>
                <ul className="container flex justify-start gap-4">
                   <li>
                      <a href="#">
@@ -94,7 +94,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div className="col-span-2 sm:col-span-4">
-               <p className="text-center text-xs font-semibold">© 2024 WEBHUB</p>
+               <p className="text-center text-xs font-semibold about">© 2024 WEBHUB</p>
             </div>
          </div>
       </footer>
