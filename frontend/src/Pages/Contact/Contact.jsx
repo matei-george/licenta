@@ -27,14 +27,14 @@ export const Contact = () => {
                pur și simplu să ne transmiteți un gând bun, suntem aici pentru voi. Echipa noastră va răspunde cu promptitudine și va face tot posibilul să vă ofere o
                experiență plăcută.
             </p>
-            <p className="my-6">Apreciem încrederea dumneavoastră și suntem dedicați să vă oferim servicii de cea mai înaltă calitate</p>
+            <p className="my-6">Apreciem încrederea dumneavoastră și suntem dedicați să vă oferim servicii de cea mai înaltă calitate.</p>
             <p className="mb-4">Cu stimă și profesionalism,</p>
             <p className="font-bold mb-8">Echipa WebHub</p>
             {/* The icons container */}
             <div className="contact flex justify-around mb-4">
                <a href="mailto:suport@webhub.com" className="flex items-center gap-4 font-semibold">
                   <img src={email} alt="email-icon" className="contact__icon" />
-                  support@webhub.ro
+                  suport@webhub.ro
                </a>
                <a href="#" className="flex items-center gap-4 font-semibold">
                   <img src={phone} alt="phone-icon" className="contact__icon" />

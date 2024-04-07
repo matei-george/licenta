@@ -14,7 +14,7 @@ export const Footer = () => {
       <footer className="footer p-8 pb-4 pt-4 mb-1">
          <div className="container mx-auto grid grid-cols-4 gap-4">
             <div>
-               <h3 className="text-lg font-semibold">COMPANIE</h3>
+               <h3 className="text-lg font-semibold footer-tag">COMPANIE</h3>
                <ul className="mt-4">
                   <li>
                      <a href="#" className="footer__link text-sm">
@@ -39,7 +39,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold">AJUTOR</h3>
+               <h3 className="text-lg font-semibold footer-tag">AJUTOR</h3>
                <ul className="mt-4">
                   <li>
                      <a href="#" className="footer__link text-sm">
@@ -54,7 +54,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold">GHID</h3>
+               <h3 className="text-lg font-semibold footer-tag">GHID</h3>
                <ul className="mt-4">
                   <li>
                      <a href="#" className="footer__link text-sm">
@@ -69,7 +69,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold mb-6 pl-5 footer-tag">Urmărește-ne</h3>
+               <h3 className="text-lg font-semibold mb-6 pl-5 footer-tag uppercase">Urmărește-ne</h3>
                <ul className="container flex justify-start gap-4">
                   <li>
                      <a href="#">
