@@ -10,10 +10,7 @@
    left: 27px;
 }
 
-.navbar__title {
-   font-family: var(--crimson);
-}
-
+.navbar__title,
 .nav-link {
    font-family: var(--crimson);
 }

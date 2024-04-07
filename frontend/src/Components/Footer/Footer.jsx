@@ -17,22 +17,22 @@ export const Footer = () => {
                <h3 className="text-lg font-semibold">COMPANIE</h3>
                <ul className="mt-4">
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Despre noi
                      </a>
                   </li>
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Echipa noastră
                      </a>
                   </li>
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Politica de Confidențialitate
                      </a>
                   </li>
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Termeni și Condiții
                      </a>
                   </li>
@@ -42,12 +42,12 @@ export const Footer = () => {
                <h3 className="text-lg font-semibold">AJUTOR</h3>
                <ul className="mt-4">
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Contact
                      </a>
                   </li>
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         FAQ
                      </a>
                   </li>
@@ -57,19 +57,19 @@ export const Footer = () => {
                <h3 className="text-lg font-semibold">GHID</h3>
                <ul className="mt-4">
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Cum functionează
                      </a>
                   </li>
                   <li>
-                     <a href="#" className="footer__link">
+                     <a href="#" className="footer__link text-sm">
                         Ghid de utilizare
                      </a>
                   </li>
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold mb-6">Urmărește-ne</h3>
+               <h3 className="text-lg font-semibold mb-6 pl-5">Urmărește-ne</h3>
                <ul className="container flex justify-start gap-4">
                   <li>
                      <a href="#">
@@ -94,7 +94,7 @@ export const Footer = () => {
                </ul>
             </div>
             <div className="col-span-2 sm:col-span-4">
-               <p className="text-center text-sm font-semibold">© 2024 WEBHUB</p>
+               <p className="text-center text-xs font-semibold">© 2024 WEBHUB</p>
             </div>
          </div>
       </footer>
