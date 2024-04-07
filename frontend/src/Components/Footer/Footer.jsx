@@ -11,7 +11,7 @@ import youtube from "../Assets/Icons/icons8-youtube-50.png";
 
 export const Footer = () => {
    return (
-      <footer className="footer p-8 pt-4 mt-16 mb-1">
+      <footer className="footer p-8 pb-4 pt-4 mb-1">
          <div className="container mx-auto grid grid-cols-4 gap-4">
             <div>
                <h3 className="text-lg font-semibold">COMPANIE</h3>
