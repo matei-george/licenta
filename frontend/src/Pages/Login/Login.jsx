@@ -9,9 +9,9 @@ import "./Login.css";
  */
 export const Login = () => {
    return (
-      <div className="max-w-lg mx-auto p-8 pb-4 login-register-card rounded-lg overflow-hidden shadow-2xl">
+      <div className="max-w-lg mx-auto p-8 login-register-card rounded-lg overflow-hidden shadow-2xl">
          <div className="px-6 py-4">
-            <p className="text-left text-lg  mb-4 font-bold register-text">Înregistrare</p>
+            <p className="text-left text-lg  mb-4 font-bold register-text">Autentificare</p>
             <h2 className="text-center text-3xl mb-8 title">Bine ai venit pe Webhub!</h2>
             <div className="mb-4">
                <label htmlFor="username" className="block text-sm font-semibold mb-2">
@@ -39,24 +39,14 @@ export const Login = () => {
                   className="block w-full px-3 py-2 border rounded shadow appearance-none leading-tight focus:outline-none focus:shadow-outline"
                />
             </div>
-            <div className="mb-6">
-               <label htmlFor="password" className="block text-sm font-semibold mb-2">
-                  Confirmă Parola
-               </label>
-               <input
-                  type="password"
-                  id="password"
-                  className="block w-full px-3 py-2 border rounded shadow appearance-none leading-tight focus:outline-none focus:shadow-outline"
-               />
-            </div>
             <div className="flex items-center mb-2">
                <button className=" text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline login-cta" type="button">
-                  Înregistrare
+                  Autentificare
                </button>
             </div>
             <div>
                <p className="text-center text-sm mb-6">
-                  Ai deja un cont? Autentifică-te
+                  Nu ai cont? Crează unul
                   <a href="#" className="font-bold ml-1 here-link">
                      aici!
                   </a>
@@ -64,7 +54,7 @@ export const Login = () => {
             </div>
             <div>
                <p className="text-left text-xs">
-                  Înregistrându-mă, sunt de acord cu{" "}
+                  Autentificându-mă, sunt de acord cu{" "}
                   <a href="#" className="font-semibold underline underline-offset-2 here-link">
                      Termenii și Condițiile
                   </a>
