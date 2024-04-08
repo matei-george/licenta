@@ -19,7 +19,7 @@ export const Copyright = () => {
             <h1 className="text-6xl copyright-title text-center mb-2 mt-8">Politica de Copyright</h1>
             <p className="font-semibold text-xs mb-6">Ultima actualizare : 10 Mai 2024</p>
             <p className="mb-4">
-               Bine ați venit la Webhub! Această politică de drepturi de autor reglementează utilizarea și distribuția componentelor web disponibile pe platforma noastră. Prin
+               Bine ați venit la WebHub! Această politică de copyright reglementează utilizarea și distribuția componentelor web disponibile pe platforma noastră. Prin
                utilizarea acestor componente, sunteți de acord cu termenii și condițiile de mai jos
             </p>
             <ol className="list-decimal px-4">
@@ -98,7 +98,7 @@ export const Copyright = () => {
                   Componentele Web.
                </p>
             </ol>
-            <p className="mt-4 mb-8">Mulțumim pentru utilizarea platformei noastre!</p>
+            <p className="mt-8 mb-2">Mulțumim pentru utilizarea platformei noastre!</p>
             <p className="mb-8 font-bold">Echipa WebHub</p>
          </div>
          <Footer />

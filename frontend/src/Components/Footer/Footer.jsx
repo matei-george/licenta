@@ -33,6 +33,11 @@ export const Footer = () => {
                   </li>
                   <li>
                      <a href="#" className="footer__link text-sm">
+                        Politica de Copyright
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" className="footer__link text-sm">
                         Termeni și Condiții
                      </a>
                   </li>
@@ -58,7 +63,7 @@ export const Footer = () => {
                <ul className="mt-4">
                   <li>
                      <a href="#" className="footer__link text-sm">
-                        Cum functionează
+                        Cum funcționează
                      </a>
                   </li>
                   <li>
