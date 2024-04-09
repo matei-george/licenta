@@ -7,6 +7,7 @@ import { Register } from "./Pages/Register/Register";
 import { Contact } from "./Pages/Contact/Contact";
 import { Politica } from "./Pages/PoliticaConf/Politica";
 import { TermeniCond } from "./Pages/TermeniCond/TermeniCond";
+import { FAQ } from "./Pages/FAQ/FAQ";
 export default function App() {
    return (
       <div>
@@ -14,6 +15,7 @@ export default function App() {
          <Contact />
          <Politica />
          <TermeniCond />
+         <FAQ />
          <div className="container flex">
             <Login />
             <Register />

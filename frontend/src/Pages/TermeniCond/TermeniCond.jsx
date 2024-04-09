@@ -13,8 +13,8 @@ export const TermeniCond = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
-         <div className="tc-content mx-auto">
-            <h1 className="text-6xl tc-title text-center mb-8 mt-8">Termenii și Condițiile WebHub</h1>
+         <div className="tcond-content mx-auto">
+            <h1 className="text-6xl tcond-title text-center mb-8 mt-8">Termenii și Condițiile WebHub</h1>
             <ol className="list-decimal px-4">
                <li className="text-lg font-bold mb-1">Definiții</li>
                <ul className="list-disc px-8">
