@@ -1,0 +1,11 @@
+main {
+   background-color: var(--page-bg);
+}
+.pc-content {
+   width: 70vw;
+}
+
+.pc-title {
+   font-family: var(--crimson);
+   border-bottom: 2px solid lightgray;
+}

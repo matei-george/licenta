@@ -1,0 +1,11 @@
+main {
+   background-color: var(--page-bg);
+}
+.tc-content {
+   width: 70vw;
+}
+
+.tc-title {
+   font-family: var(--crimson);
+   border-bottom: 2px solid lightgray;
+}
