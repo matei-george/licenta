@@ -32,7 +32,7 @@ export const Navbar = () => {
                   </a>
                </li>
                <li className="mr-6">
-                  <a href="/" className="nav-link font-semibold text-lg">
+                  <a href="/despre" className="nav-link font-semibold text-lg">
                      Despre
                   </a>
                </li>
