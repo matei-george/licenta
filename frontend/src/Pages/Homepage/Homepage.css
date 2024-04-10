@@ -1,6 +1,11 @@
 main {
-   height: 100vh;
+   background-color: var(--page-bg);
 }
 .work-in-progress {
    transform: scale(1);
+}
+
+/*! Hotfix temporar pentru ca pagina sa ocupe tot viewportul */
+.homepage {
+   height: 100vh;
 }

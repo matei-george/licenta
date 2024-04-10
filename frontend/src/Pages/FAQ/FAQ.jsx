@@ -8,10 +8,7 @@ import { Footer } from "../../Components/Footer/Footer";
 // Stiluri
 import "../../shared.css";
 import "./FAQ.css";
-/**
- * TODO
- * [] > link-uri catre pagini
- */
+
 export const FAQ = () => {
    return (
       <main className="flex flex-col">

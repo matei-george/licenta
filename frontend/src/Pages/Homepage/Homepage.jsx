@@ -14,7 +14,7 @@ import wip_icon from "../../Components/Assets/Icons/icons8-work-in-progress-64.p
 
 export const Homepage = () => {
    return (
-      <main className="flex flex-col">
+      <main className="flex flex-col homepage">
          <Navbar />
          <div className="flex-1 flex align-center justify-center flex-col gap-4">
             <p className="font-bold text-4xl text-center">Work In Progress</p>

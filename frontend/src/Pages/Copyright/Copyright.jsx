@@ -11,6 +11,7 @@ import "./Copyright.css";
 
 // TODO
 // [] > Revizie politica
+
 export const Copyright = () => {
    return (
       <main className="flex flex-col">

@@ -1,3 +1,6 @@
+.register-bg {
+   height: 100vh;
+}
 .login-register-card {
    background-color: var(--modal-bg);
 }
