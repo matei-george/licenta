@@ -1,13 +1,11 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 
-import { GhidUtilizare } from "./Pages/GhidUtilizare/GhidUtilizare";
+import { Homepage } from "./Pages/Homepage/Homepage";
 export default function App() {
    return (
       <div>
-         <GhidUtilizare />
+         <Homepage />
       </div>
-
-      // https://codeshare.io/aiimaseaua
    );
 }

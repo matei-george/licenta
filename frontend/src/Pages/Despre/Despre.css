@@ -1,0 +1,11 @@
+main {
+   background-color: var(--page-bg);
+}
+.despre-content {
+   width: 70vw;
+}
+
+.despre-title {
+   font-family: var(--crimson);
+   border-bottom: 2px solid lightgray;
+}

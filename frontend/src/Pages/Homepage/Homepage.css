@@ -1,0 +1,6 @@
+main {
+   height: 100vh;
+}
+.work-in-progress {
+   transform: scale(1);
+}
