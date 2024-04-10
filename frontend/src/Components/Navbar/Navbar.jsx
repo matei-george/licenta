@@ -17,39 +17,39 @@ export const Navbar = () => {
             </div>
             <ul className="flex flex-1 justify-center gap-4">
                <li className="mr-6">
-                  <a href="#" className="nav-link font-semibold text-lg">
+                  <a href="/" className="nav-link font-semibold text-lg">
                      Acasă
                   </a>
                </li>
                <li className="mr-6">
-                  <a href="#" className="nav-link font-semibold text-lg">
+                  <a href="/" className="nav-link font-semibold text-lg">
                      Toate Produsele
                   </a>
                </li>
                <li className="mr-6">
-                  <a href="#" className="nav-link font-semibold text-lg">
+                  <a href="/" className="nav-link font-semibold text-lg">
                      Categorii
                   </a>
                </li>
                <li className="mr-6">
-                  <a href="#" className="nav-link font-semibold text-lg">
+                  <a href="/" className="nav-link font-semibold text-lg">
                      Despre
                   </a>
                </li>
                <li className="mr-6">
-                  <a href="#" className="nav-link font-semibold text-lg ">
+                  <a href="/contact" className="nav-link font-semibold text-lg ">
                      Contact
                   </a>
                </li>
             </ul>
             <div className="flex items-center gap-5 mr-12 ">
-               <a href="#">
+               <a href="/login">
                   <img src={user} alt="user-icons" className="navbar__icons" />
                </a>
-               <a href="#">
+               <a href="/">
                   <img src={favourite} alt="user-icons" className="navbar__icons" />
                </a>
-               <a href="#">
+               <a href="/">
                   <img src={cart} alt="user-icons" className="navbar__icons" />
                </a>
             </div>
