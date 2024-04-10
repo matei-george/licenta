@@ -23,11 +23,6 @@ export const Footer = () => {
                   </li>
                   <li>
                      <a href="#" className="footer__link text-sm">
-                        Echipa noastră
-                     </a>
-                  </li>
-                  <li>
-                     <a href="#" className="footer__link text-sm">
                         Politica de Confidențialitate
                      </a>
                   </li>
@@ -59,13 +54,8 @@ export const Footer = () => {
                </ul>
             </div>
             <div>
-               <h3 className="text-lg font-semibold footer-tag">GHID</h3>
+               <h3 className="text-lg font-semibold footer-tag">EȘTI LA ÎNCEPUT?</h3>
                <ul className="mt-4">
-                  <li>
-                     <a href="#" className="footer__link text-sm">
-                        Cum funcționează
-                     </a>
-                  </li>
                   <li>
                      <a href="#" className="footer__link text-sm">
                         Ghid de utilizare
