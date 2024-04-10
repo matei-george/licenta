@@ -11,7 +11,7 @@ main {
 }
 
 .contact-content p {
-   font-family: var(--crimson);
+   font-family: var(--inter);
    font-size: 18px;
 }
 

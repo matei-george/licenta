@@ -1,0 +1,11 @@
+main {
+   background-color: var(--page-bg);
+}
+.gu-content {
+   width: 70vw;
+}
+
+.gu-title {
+   font-family: var(--crimson);
+   border-bottom: 2px solid lightgray;
+}
