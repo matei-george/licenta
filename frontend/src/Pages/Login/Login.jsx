@@ -56,15 +56,15 @@ export const Login = () => {
                <div>
                   <p className="text-left text-xs">
                      Autentificându-mă, sunt de acord cu{" "}
-                     <a href="#" className="font-semibold underline underline-offset-2 here-link">
+                     <a href="/termeni" className="font-semibold underline underline-offset-2 here-link">
                         Termenii și Condițiile
                      </a>
                      ,
-                     <a href="#" className="font-semibold underline underline-offset-2 here-link">
+                     <a href="/copyright" className="font-semibold underline underline-offset-2 here-link">
                         Politica de Copyright
                      </a>
                      ,respectiv{" "}
-                     <a href="#" className="font-semibold underline underline-offset-2 here-link">
+                     <a href="/politica" className="font-semibold underline underline-offset-2 here-link">
                         Politica de Confidențialitate
                      </a>{" "}
                      . <span className="font-bold">WebHub</span> își rezervă dreptul de a le modifica la liberă alegere reflectând modul de gestionare al produselor afișate,
