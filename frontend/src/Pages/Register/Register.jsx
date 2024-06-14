@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import "../../shared.css";
 import "./Register.css";
-// import { useDispatch } from "react-redux";
 import { useRegisterMutation } from "../../redux/api/usersApiSlice";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../redux/features/auth/authSlice";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 export const Register = () => {
    const [username, setUsername] = useState("");
@@ -12,11 +14,13 @@ export const Register = () => {
    const [password, setPassword] = useState("");
    const [confirmPassword, setConfirmPassword] = useState("");
    const [register, { isLoading }] = useRegisterMutation();
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       if (password !== confirmPassword) {
-         alert("Parolele nu coincid.");
+         toast.error("Parolele nu coincid.");
          return;
       }
 
@@ -24,9 +28,12 @@ export const Register = () => {
          const userData = { username, email, password };
          const newUser = await register(userData).unwrap();
          console.log("Registered user:", newUser);
-         // Optionally, dispatch an action or perform other actions after registration
+         dispatch(setCredentials(newUser)); // Assuming newUser contains user info
+         // Optionally, perform additional actions after registration
+         navigate("/");
       } catch (error) {
          console.error("Failed to register:", error);
+         toast.error(error.message || "Eroare la înregistrare.");
          // Handle error: display message, reset form, etc.
       }
    };
