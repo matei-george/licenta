@@ -23,6 +23,6 @@ router.post("/auth", loginUser);
 router.post("/logout", logoutCurrentUser);
 router.route("/profile").get(authenticate, getCurrentUserProfile).put(authenticate, updateCurrentUserProfile);
 
-// Administrare admin rute
+// Administrare admin
 router.route("/:id").delete(authenticate, authorizedAdmin, deleteUserById).get(authenticate, authorizedAdmin, getUserById).put(authenticate, authorizedAdmin, updateUserById);
 export default router;
