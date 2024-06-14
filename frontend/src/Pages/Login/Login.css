@@ -1,3 +1,6 @@
+* {
+   font-family: var(--inter);
+}
 .login-bg {
    height: 100vh;
 }
