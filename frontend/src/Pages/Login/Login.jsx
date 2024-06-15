@@ -29,18 +29,19 @@ const Login = () => {
    const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-         const { data } = await login({ email, password }).unwrap(); // Perform the login mutation
-         dispatch(setCredentials(data)); // Dispatch action to set user credentials in Redux
-         navigate("/"); // Redirect to homepage upon successful login
+         const res = await login({ email, password }).unwrap(); // Perform the login mutation
+         console.log("Logged in user:", res);
+         dispatch(setCredentials(res)); // Dispatch action to set user credentials in Redux
+         navigate(redirect);
+         toast.success("Autentificare reușită!");
       } catch (err) {
-         console.error("Failed to log in:", err);
-         // Handle login error (e.g., display error message)
+         console.error("Failed to login:", err);
          toast.error(err?.data?.message || err.error);
       }
    };
 
    return (
-      <main className="login-bg flex justify-center items-center">
+      <main className="login-bg flex justify-center items-center min-h-screen">
          <div className="max-w-lg mx-auto p-8 login-register-card rounded-lg overflow-hidden shadow-2xl">
             <div className="px-6 py-4">
                <p className="text-left text-lg mb-4 font-bold register-text">Autentificare</p>
@@ -111,3 +112,5 @@ const Login = () => {
 };
 
 export default Login;
+
+// *Timestamp 2:35:35*
