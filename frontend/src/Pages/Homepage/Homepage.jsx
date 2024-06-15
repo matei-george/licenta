@@ -12,7 +12,7 @@ import "./Homepage.css";
 // Asseturi
 import wip_icon from "../../Components/Assets/Icons/icons8-work-in-progress-64.png";
 
-export const Homepage = () => {
+const Homepage = () => {
    return (
       <main className="flex flex-col homepage">
          <Navbar />
@@ -24,3 +24,5 @@ export const Homepage = () => {
       </main>
    );
 };
+
+export default Homepage;

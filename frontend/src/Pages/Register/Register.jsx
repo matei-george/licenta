@@ -8,7 +8,7 @@ import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
-export const Register = () => {
+const Register = () => {
    const [username, setUsername] = useState("");
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
@@ -134,3 +134,5 @@ export const Register = () => {
       </main>
    );
 };
+
+export default Register;

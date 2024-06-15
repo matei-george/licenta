@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import "../../shared.css";
 import logo from "../Assets/Images/WebHub_Logo_t.png";
@@ -8,7 +8,7 @@ import cart from "../Assets/Icons/icons8-shopping-cart-50.png";
 import favourite from "../Assets/Icons/icons8-heart-50.png";
 
 import { useSelector, useDispatch } from "react-redux";
-import { useLoginMutation } from "../../redux/api/usersApiSlice";
+import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -17,7 +17,8 @@ export const Navbar = () => {
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
-   const [logoutApiCall] = useLoginMutation();
+   const [logoutApiCall] = useLogoutMutation();
+   const [dropdownVisible, setDropdownVisible] = useState(false);
 
    const logoutHandler = async () => {
       try {
@@ -27,6 +28,10 @@ export const Navbar = () => {
       } catch (error) {
          console.error(error);
       }
+   };
+
+   const toggleDropdown = () => {
+      setDropdownVisible(!dropdownVisible);
    };
 
    return (
@@ -65,11 +70,38 @@ export const Navbar = () => {
             </ul>
             <div className="relative">
                {userInfo ? (
-                  <div className="flex items-center gap-5">
-                     <span className="text-black">{userInfo.username}</span>
-                     <button onClick={logoutHandler} className="text-black font-semibold">
-                        Logout
-                     </button>
+                  <div className="flex items-center gap-5 relative">
+                     <img src={userIcon} alt="user-icon" className="navbar__icons cursor-pointer" onClick={toggleDropdown} />
+                     {dropdownVisible && (
+                        <div className="dropdown-content absolute right-0 mr-0 w-48 bg-white shadow-md rounded-lg">
+                           <p className="p-2 border-b text-center font-smibold">{userInfo.username}</p>
+                           {userInfo.isAdmin && (
+                              <>
+                                 <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">
+                                    Dashboard
+                                 </Link>
+                                 <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
+                                    Produse
+                                 </Link>
+                                 <Link to="/admin/categorylist" className="block px-4 py-2 hover:bg-gray-100">
+                                    Categorii
+                                 </Link>
+                                 <Link to="/admin/orderlist" className="block px-4 py-2 hover:bg-gray-100">
+                                    Comenzi
+                                 </Link>
+                                 <Link to="/admin/userlist" className="block px-4 py-2 hover:bg-gray-100">
+                                    Utilizatori
+                                 </Link>
+                              </>
+                           )}
+                           <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
+                              Profil
+                           </Link>
+                           <button onClick={logoutHandler} className="w-full p-2 text-left hover:bg-gray-100 font-semibold">
+                              Delogare
+                           </button>
+                        </div>
+                     )}
                   </div>
                ) : (
                   <Link to="/login">

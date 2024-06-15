@@ -21,3 +21,23 @@
 .navbar__icons {
    height: 30px;
 }
+.dropdown-content {
+   position: absolute;
+   top: 50px;
+   display: none;
+   opacity: 0;
+   transform: translateX(10px);
+   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Dropdown visibility on click */
+.navbar .relative .dropdown-content {
+   display: block;
+   opacity: 1;
+   transform: translateX(0);
+}
+
+/* Ensure dropdown is slightly to the right */
+.dropdown-content {
+   right: -10px;
+}

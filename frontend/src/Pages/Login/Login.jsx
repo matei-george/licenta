@@ -112,5 +112,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// *Timestamp 2:35:35*
