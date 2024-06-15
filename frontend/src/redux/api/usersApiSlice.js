@@ -38,7 +38,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
          query: () => ({
             url: USERS_URL,
          }),
-         providesTags: ["Utilizator"],
+         providesTags: ["User"],
          keepUnusedDataFor: 5,
       }),
 
@@ -56,11 +56,11 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
       updateUser: builder.mutation({
          query: (data) => ({
-            url: `${USERS_URL}/${data}`,
+            url: `${USERS_URL}/${data.userId}`,
             method: "PUT",
             body: data,
          }),
-         invalidatesTags: ["Utilizator"],
+         invalidatesTags: ["User"],
       }),
    }),
 });
