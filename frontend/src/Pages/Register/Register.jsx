@@ -27,12 +27,10 @@ const Register = () => {
       try {
          const userData = { username, email, password };
          const newUser = await register(userData).unwrap();
-         console.log("Registered user:", newUser);
-         dispatch(setCredentials(newUser)); // Assuming newUser contains user info
+         dispatch(setCredentials(...newUser)); // Assuming newUser contains user info
          // Optionally, perform additional actions after registration
          navigate("/");
       } catch (error) {
-         console.error("Failed to register:", error);
          toast.error(error.message || "Eroare la înregistrare.");
          // Handle error: display message, reset form, etc.
       }

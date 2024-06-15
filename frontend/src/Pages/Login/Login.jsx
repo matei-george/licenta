@@ -18,7 +18,7 @@ const Login = () => {
 
    const { search } = useLocation();
    const sp = new URLSearchParams(search);
-   const redirect = sp.get("redirect") || "/";
+   const redirect = sp.get("redirect") || "/home";
 
    useEffect(() => {
       if (userInfo) {
@@ -30,13 +30,18 @@ const Login = () => {
       e.preventDefault();
       try {
          const res = await login({ email, password }).unwrap(); // Perform the login mutation
-         console.log("Logged in user:", res);
          dispatch(setCredentials(res)); // Dispatch action to set user credentials in Redux
          navigate(redirect);
-         toast.success("Autentificare reușită!");
+         alert("Autentificare reușită!"); // Show success message using alert
+         setEmail(""); // Clear email input field
+         setPassword(""); // Clear password input field
       } catch (err) {
-         console.error("Failed to login:", err);
-         toast.error(err?.data?.message || err.error);
+         if (err?.data?.message === "Invalid credentials") {
+            alert("Parolă greșită!"); // Show alert for incorrect password
+            setPassword(""); // Clear password input field
+         } else {
+            toast.error(err?.data?.message || err.error); // Handle other errors using toast
+         }
       }
    };
 
