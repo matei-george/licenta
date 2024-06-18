@@ -16,7 +16,9 @@ import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
 import Homepage from "./Pages/Homepage/Homepage.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
-import ProductList from "./Pages/ProductList/ProductList.jsx";
+import ProductList from "./Components/ProductList/ProductList.jsx";
+import ProductUpdate from "./Components/ProductUpdate/ProductUpdate.jsx";
+import AllProducts from "./Components/AllProducts/AllProducts.jsx";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -34,6 +36,8 @@ const router = createBrowserRouter(
             <Route path="userlist" element={<UserList />}></Route>
             <Route path="categorylist" element={<CategoryList />}></Route>
             <Route path="productlist" element={<ProductList />}></Route>
+            <Route path="product/update/:_id" element={<ProductUpdate />}></Route>
+            <Route path="allproductslist" element={<AllProducts />}></Route>
          </Route>
       </Route>
    )

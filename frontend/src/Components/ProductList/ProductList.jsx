@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import AdminMenu from "../../Components/AdminMenu/AdminMenu";
+import AdminMenu from "../AdminMenu/AdminMenu";
 
 const ProductList = () => {
    const [image, setImage] = useState("");
