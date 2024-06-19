@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { updateCart } from "../../../../../backend/Utils/cart";
+import { updateCart } from "../../../Utils/cartUtils";
 
 const initialState = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
 
-// TODO -> Integrare cu Stripe
+// Selector function to calculate cart items count
+export const selectCartItemsCount = (state) => state.cart.cartItems.reduce((count, item) => count + item.qty, 0);
 
 const cartSlice = createSlice({
    name: "cart",
@@ -30,10 +31,12 @@ const cartSlice = createSlice({
          state.shippingAddress = action.payload;
          localStorage.setItem("cart", JSON.stringify(state));
       },
+
       savePaymentMethod: (state, action) => {
          state.paymentMethod = action.payload;
          localStorage.setItem("cart", JSON.stringify(state));
       },
+
       clearCartItems: (state, action) => {
          state.cartItems = [];
          localStorage.setItem("cart", JSON.stringify(state));

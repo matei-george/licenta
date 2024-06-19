@@ -1,24 +1,25 @@
-// Navbar.jsx
 import React, { useState } from "react";
 import "./Navbar.css";
 import "../../shared.css";
 import logo from "../Assets/Images/WebHub_Logo_t.png";
 import userIcon from "../Assets/Icons/icons8-user-50.png";
-import cart from "../Assets/Icons/icons8-shopping-cart-50.png";
-import { FaHeart } from "react-icons/fa"; // Import FaHeart icon
+import { FaShoppingCart, FaHeart } from "react-icons/fa"; // Import FaShoppingCart and FaHeart icons
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import FavoritesCount from "../FavoritesCount/FavoritesCount";
+import { selectCartItemsCount } from "../../redux/features/cart/cartSlice"; // Import selector for cart items count
+import CartCount from "../CartCount/CartCount"; // Import CartCount component
 
 const Navbar = () => {
    const { userInfo } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
    const navigate = useNavigate();
-
    const [logoutApiCall] = useLogoutMutation();
    const [dropdownVisible, setDropdownVisible] = useState(false);
+
+   const cartItemsCount = useSelector(selectCartItemsCount); // Selector to get cart items count
 
    const logoutHandler = async () => {
       try {
@@ -115,8 +116,10 @@ const Navbar = () => {
                <Link to="/favourite" className="navbar__icons">
                   <FaHeart className="text-white text-3xl relative" style={{ stroke: "black", strokeWidth: "4px" }} /> {/* Use FaHeart icon with black outline */}
                </Link>
-               <Link to="/cart">
-                  <img src={cart} alt="cart-icon" className="navbar__icons" />
+               {/* Make Cart icon clickable and navigate to /cart */}
+               <Link to="/cart" className="text-white flex items-center">
+                  <FaShoppingCart className="text-pink-500 text-2xl" />
+                  {cartItemsCount > 0 && <span className="cart-count absolute top-4 right-0 bg-white text-black rounded-full px-1 py-0 text-xs">{cartItemsCount}</span>}
                </Link>
             </div>
          </div>
