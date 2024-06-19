@@ -12,7 +12,7 @@ import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
-export const Navbar = () => {
+const Navbar = () => {
    const { userInfo } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
    const navigate = useNavigate();
@@ -121,3 +121,5 @@ export const Navbar = () => {
       </nav>
    );
 };
+
+export default Navbar;

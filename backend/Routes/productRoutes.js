@@ -19,7 +19,7 @@ import {
 router.route("/").post(authenticate, authorizeAdmin, formidable(), addProduct);
 router.route("/").get(fetchProducts);
 router.route("/allproducts").get(fetchAllProducts);
-router.route("/top-products").get(fetchTopProducts);
+router.route("/top").get(fetchTopProducts);
 router.route("/new").get(fetchNewProducts);
 router.route("/:id").put(authenticate, authorizeAdmin, formidable(), updateProductDetails);
 router.route("/:id").delete(authenticate, authorizeAdmin, formidable(), deleteProduct);

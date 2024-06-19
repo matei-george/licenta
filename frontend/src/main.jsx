@@ -14,11 +14,11 @@ import CategoryList from "./Components/CategoryList/CategoryList.jsx";
 
 import Login from "./Pages/Login/Login.jsx";
 import Register from "./Pages/Register/Register.jsx";
-import Homepage from "./Pages/Homepage/Homepage.jsx";
 import Profile from "./Components/Profile/Profile.jsx";
 import ProductList from "./Components/ProductList/ProductList.jsx";
 import ProductUpdate from "./Components/ProductUpdate/ProductUpdate.jsx";
 import AllProducts from "./Components/AllProducts/AllProducts.jsx";
+import Homepage from "./Homepage.jsx";
 
 const router = createBrowserRouter(
    createRoutesFromElements(
@@ -30,6 +30,7 @@ const router = createBrowserRouter(
          <Route path="/home" element={<Homepage />}></Route>
          <Route path="/login" element={<Login />}></Route>
          <Route path="/register" element={<Register />}></Route>
+         <Route path="/" index={true} element={<Homepage />}></Route>
 
          {/* Rute admin */}
          <Route path="/admin" element={<AdminRoute />}>
