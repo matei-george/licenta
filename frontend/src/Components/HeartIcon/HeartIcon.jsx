@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
-import { addToFavorites, removeFromFavorites, setFavorites } from "../../redux/features/favorites/favoriteSlice";
+import { addToFavorites, removeFromFavorites, setFavorites } from "../../redux/features/favourites/favouriteSlice.js";
 import { addFavoriteToLocalStorage, getFavoritesFromLocalStorage, removeFavoriteFromLocalStorage } from "../../Utils/localStorage";
 
-const HeartIcon = ({ product }) => {
+const HeartIcon = ({ product, className }) => {
    const dispatch = useDispatch();
    const favorites = useSelector((state) => state.favorites) || [];
    const isFavorite = favorites.some((p) => p._id === product._id);
@@ -24,11 +24,12 @@ const HeartIcon = ({ product }) => {
       }
    };
 
+   // Heart icon color
+   const heartColor = isFavorite ? "#ff0080" : "#fff"; // Pink when favorite, white when not
+
    return (
-      <div className="relative">
-         <div className="absolute top-8 right-5 cursor-pointer" onClick={toggleFavorites}>
-            {isFavorite ? <FaHeart className="text-pink-500" /> : <FaRegHeart className="text-black" />}
-         </div>
+      <div className={className} onClick={toggleFavorites} style={{ cursor: "pointer" }}>
+         {isFavorite ? <FaHeart className="text-pink-500" style={{ color: heartColor }} /> : <FaRegHeart className="text-black" style={{ color: heartColor }} />}
       </div>
    );
 };

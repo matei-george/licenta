@@ -1,16 +1,16 @@
-// eslint-disable-next-line no-unused-vars
+// Navbar.jsx
 import React, { useState } from "react";
 import "./Navbar.css";
 import "../../shared.css";
 import logo from "../Assets/Images/WebHub_Logo_t.png";
 import userIcon from "../Assets/Icons/icons8-user-50.png";
 import cart from "../Assets/Icons/icons8-shopping-cart-50.png";
-import favourite from "../Assets/Icons/icons8-heart-50.png";
-
+import { FaHeart } from "react-icons/fa"; // Import FaHeart icon
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
+import FavoritesCount from "../FavoritesCount/FavoritesCount";
 
 const Navbar = () => {
    const { userInfo } = useSelector((state) => state.auth);
@@ -110,8 +110,10 @@ const Navbar = () => {
                )}
             </div>
             <div className="flex items-center gap-5 mr-12">
-               <Link to="/favourite">
-                  <img src={favourite} alt="favourite-icon" className="navbar__icons" />
+               {/* Integrate FavoritesCount component here */}
+               <FavoritesCount />
+               <Link to="/favourite" className="navbar__icons">
+                  <FaHeart className="text-white text-3xl relative" style={{ stroke: "black", strokeWidth: "4px" }} /> {/* Use FaHeart icon with black outline */}
                </Link>
                <Link to="/cart">
                   <img src={cart} alt="cart-icon" className="navbar__icons" />
