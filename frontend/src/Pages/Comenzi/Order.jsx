@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSelector } from "react-redux";
 import Message from "../../Components/Message/Message";
 import Loader from "../../Components/Loader/Loader";
 import { useDeliverOrderMutation, useGetOrderDetailsQuery, useGetPaypalClientIdQuery, usePayOrderMutation } from "../../redux/api/orderApiSlice";
+import { useDownloadProductZipMutation } from "../../redux/api/productApiSlice";
 
 const Order = () => {
    const { id: orderId } = useParams();
@@ -13,15 +14,16 @@ const Order = () => {
 
    const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
    const [deliverOrder, { isLoading: loadingDeliver }] = useDeliverOrderMutation();
+   const [downloadProductZip] = useDownloadProductZipMutation();
    const { userInfo } = useSelector((state) => state.auth);
 
    const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
 
-   const { data: paypal, isLoading: loadingPaPal, error: errorPayPal } = useGetPaypalClientIdQuery();
+   const { data: paypal, isLoading: loadingPayPal, error: errorPayPal } = useGetPaypalClientIdQuery();
 
    useEffect(() => {
-      if (!errorPayPal && !loadingPaPal && paypal.clientId) {
-         const loadingPaPalScript = async () => {
+      if (!errorPayPal && !loadingPayPal && paypal.clientId) {
+         const loadingPayPalScript = async () => {
             paypalDispatch({
                type: "resetOptions",
                value: {
@@ -34,11 +36,32 @@ const Order = () => {
 
          if (order && !order.isPaid) {
             if (!window.paypal) {
-               loadingPaPalScript();
+               loadingPayPalScript();
             }
          }
       }
-   }, [errorPayPal, loadingPaPal, order, paypal, paypalDispatch]);
+   }, [errorPayPal, loadingPayPal, order, paypal, paypalDispatch]);
+
+   const handleDownload = async (filename) => {
+      const cleanedFilename = filename.split(/[\\/]/).pop(); // Remove all slashes and get the filename
+      console.log(cleanedFilename); // Verify the cleaned filename
+      try {
+         const response = await fetch(`http://localhost:5000/api/uploads/download/${cleanedFilename}`);
+         if (!response.ok) {
+            throw new Error("Network response was not ok");
+         }
+         const blob = await response.blob();
+         const url = window.URL.createObjectURL(blob);
+         const link = document.createElement("a");
+         link.href = url;
+         link.setAttribute("download", cleanedFilename);
+         document.body.appendChild(link);
+         link.click();
+         link.remove();
+      } catch (error) {
+         console.error("Failed to download ZIP file:", error);
+      }
+   };
 
    function onApprove(data, actions) {
       return actions.order.capture().then(async function (details) {
@@ -91,6 +114,7 @@ const Order = () => {
                               <th className="p-2 text-center">Quantity</th>
                               <th className="p-2">Unit Price</th>
                               <th className="p-2">Total</th>
+                              <th className="p-2">Action</th>
                            </tr>
                         </thead>
 
@@ -100,14 +124,19 @@ const Order = () => {
                                  <td className="p-2">
                                     <img src={item.image} alt={item.name} className="w-16 h-16 object-cover" />
                                  </td>
-
                                  <td className="p-2">
                                     <Link to={`/product/${item.product}`}>{item.name}</Link>
                                  </td>
-
                                  <td className="p-2 text-center">{item.qty}</td>
                                  <td className="p-2 text-center">{item.price}</td>
-                                 <td className="p-2 text-center">$ {(item.qty * item.price).toFixed(2)}</td>
+                                 <td className="p-2 text-center">LEI {(item.qty * item.price).toFixed(2)}</td>
+                                 <td className="p-2 text-center">
+                                    {order.isPaid && item.zipfile && (
+                                       <button onClick={() => handleDownload(item.zipfile)} className="bg-blue-500 text-white py-2 px-4">
+                                          Download ZIP
+                                       </button>
+                                    )}
+                                 </td>
                               </tr>
                            ))}
                         </tbody>
@@ -157,9 +186,14 @@ const Order = () => {
                <span>Tax</span>
                <span>$ {order.taxPrice}</span>
             </div>
-            <div className="flex justify-between mb-2">
+            <div className="flex justify-between items-center mb-2">
                <span>Total</span>
                <span>$ {order.totalPrice}</span>
+               {order.isPaid && order.orderItems.some((item) => item.zipfile) && (
+                  <button onClick={() => handleDownload(order.orderItems.find((item) => item.zipfile).zipfile)} className="bg-blue-500 text-white py-2 px-4 ml-4">
+                     Download ZIP
+                  </button>
+               )}
             </div>
 
             {!order.isPaid && (

@@ -27,4 +27,21 @@ router.route("/:id").delete(authenticate, authorizeAdmin, formidable(), deletePr
 router.route("/:id").get(fetchByProductId);
 router.route("/:id/reviews").post(authenticate, authorizeAdmin, checkId, addProductReview);
 router.route("/filtered-products").post(filterProducts);
+
+router.get("/download/:filename", (req, res) => {
+   const filename = req.params.filename;
+   const filepath = path.join(process.cwd(), "uploads", filename);
+
+   if (fs.existsSync(filepath)) {
+      res.setHeader("Content-Disposition", `attachment; filename=${filename}`);
+      res.setHeader("Content-Type", "application/zip");
+      return res.download(filepath, (err) => {
+         if (err) {
+            res.status(500).send({ message: "Error downloading file." });
+         }
+      });
+   }
+   res.status(404).send({ message: "File not found." });
+});
+
 export default router;

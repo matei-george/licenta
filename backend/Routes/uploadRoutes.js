@@ -1,5 +1,5 @@
 import path from "path";
-import express from "express";
+import express, { application } from "express";
 import multer from "multer";
 import fs from "fs";
 
@@ -31,7 +31,7 @@ const imageFileFilter = (req, file, cb) => {
 
 const zipFileFilter = (req, file, cb) => {
    const filetypes = /zip/;
-   const mimetypes = /zip/;
+   const mimetypes = /application\/zip/;
 
    const extname = path.extname(file.originalname).toLowerCase();
    const mimetype = file.mimetype;

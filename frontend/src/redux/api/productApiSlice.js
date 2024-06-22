@@ -61,6 +61,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
          }),
       }),
 
+      downloadProductZip: builder.mutation({
+         query: (filename) => ({
+            url: `${UPLOAD_URL}/download/${filename}`,
+            method: "GET",
+            responseType: "blob",
+         }),
+      }),
+
       deleteProduct: builder.mutation({
          query: (productId) => ({
             url: `${PRODUCT_URL}/${productId}`,
@@ -111,4 +119,5 @@ export const {
    useUploadProductImageMutation,
    useGetFilteredProductsQuery,
    useUploadProductZipMutation,
+   useDownloadProductZipMutation,
 } = productApiSlice;

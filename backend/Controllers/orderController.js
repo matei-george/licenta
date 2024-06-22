@@ -16,6 +16,7 @@ function calcPrices(orderItems) {
 }
 
 // Controller function to create a new order
+
 const createOrder = async (req, res) => {
    try {
       const { orderItems, shippingAddress, paymentMethod } = req.body;
@@ -41,6 +42,7 @@ const createOrder = async (req, res) => {
             ...itemFromClient,
             product: itemFromClient._id,
             price: matchingItemFromDB.price,
+            zipfile: matchingItemFromDB.zipfile,
             _id: undefined,
          };
       });
