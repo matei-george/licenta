@@ -1,7 +1,6 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCreateProductMutation, useUploadProductImageMutation } from "../../redux/api/productApiSlice";
+import { useCreateProductMutation, useUploadProductImageMutation, useUploadProductZipMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
 import AdminMenu from "../AdminMenu/AdminMenu";
 
@@ -15,9 +14,12 @@ const ProductList = () => {
    const [brand, setBrand] = useState("");
    const [stock, setStock] = useState(0);
    const [imageUrl, setImageUrl] = useState(null);
+   const [zipFile, setZipFile] = useState("");
+   const [zipUrl, setZipUrl] = useState(null);
    const navigate = useNavigate();
 
    const [uploadProductImage] = useUploadProductImageMutation();
+   const [uploadProductZip] = useUploadProductZipMutation();
    const [createProduct] = useCreateProductMutation();
    const { data: categories } = useFetchCategoriesQuery();
 
@@ -34,6 +36,7 @@ const ProductList = () => {
          productData.append("quantity", quantity);
          productData.append("brand", brand);
          productData.append("countInStock", stock);
+         productData.append("zipfile", zipFile);
 
          const { data } = await createProduct(productData);
 
@@ -49,7 +52,7 @@ const ProductList = () => {
       }
    };
 
-   const uploadFileHandler = async (e) => {
+   const uploadImageHandler = async (e) => {
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
 
@@ -60,6 +63,20 @@ const ProductList = () => {
          setImageUrl(res.image);
       } catch (error) {
          alert(error?.data?.message || "Error uploading image.");
+      }
+   };
+
+   const uploadZipHandler = async (e) => {
+      const formData = new FormData();
+      formData.append("zipfile", e.target.files[0]);
+
+      try {
+         const res = await uploadProductZip(formData).unwrap();
+         alert(res.message);
+         setZipFile(res.file);
+         setZipUrl(res.file);
+      } catch (error) {
+         alert(error?.data?.message || "Error uploading ZIP file.");
       }
    };
 
@@ -80,7 +97,21 @@ const ProductList = () => {
                   <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
                      {image ? image.name : "Upload Image"}
 
-                     <input type="file" name="image" accept="image/*" onChange={uploadFileHandler} className={!image ? "hidden" : "text-white"} />
+                     <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className={!image ? "hidden" : "text-white"} />
+                  </label>
+               </div>
+
+               {zipUrl && (
+                  <div className="text-center">
+                     <p className="block mx-auto">ZIP File Uploaded: {zipUrl}</p>
+                  </div>
+               )}
+
+               <div className="mb-3">
+                  <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+                     {zipFile ? zipFile.name : "Upload ZIP File"}
+
+                     <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className={!zipFile ? "hidden" : "text-white"} />
                   </label>
                </div>
 

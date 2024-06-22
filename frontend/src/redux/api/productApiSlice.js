@@ -1,7 +1,6 @@
 import { PRODUCT_URL, UPLOAD_URL } from "../constants.js";
 import { apiSlice } from "./apiSlice.js";
 
-// TODO: GRIDFS pentru zip
 export const productApiSlice = apiSlice.injectEndpoints({
    endpoints: (builder) => ({
       getProducts: builder.query({
@@ -49,6 +48,14 @@ export const productApiSlice = apiSlice.injectEndpoints({
       uploadProductImage: builder.mutation({
          query: (data) => ({
             url: `${UPLOAD_URL}`,
+            method: "POST",
+            body: data,
+         }),
+      }),
+
+      uploadProductZip: builder.mutation({
+         query: (data) => ({
+            url: `${UPLOAD_URL}/zip`,
             method: "POST",
             body: data,
          }),
@@ -103,4 +110,5 @@ export const {
    useGetNewProductsQuery,
    useUploadProductImageMutation,
    useGetFilteredProductsQuery,
+   useUploadProductZipMutation,
 } = productApiSlice;

@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import AdminMenu from "../AdminMenu/AdminMenu.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import { useUpdateProductMutation, useDeleteProductMutation, useGetProductByIdQuery, useUploadProductImageMutation } from "../../redux/api/productApiSlice.js";
+import {
+   useUpdateProductMutation,
+   useDeleteProductMutation,
+   useGetProductByIdQuery,
+   useUploadProductImageMutation,
+   useUploadProductZipMutation,
+} from "../../redux/api/productApiSlice.js";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice.js";
 
 const AdminProductUpdate = () => {
@@ -16,10 +22,13 @@ const AdminProductUpdate = () => {
    const [quantity, setQuantity] = useState(productData?.quantity || "");
    const [brand, setBrand] = useState(productData?.brand || "");
    const [stock, setStock] = useState(productData?.countInStock || "");
+   const [zipFile, setZipFile] = useState(productData?.zipFile || "");
+   const [zipUrl, setZipUrl] = useState(null);
 
    const navigate = useNavigate();
    const { data: categories = [] } = useFetchCategoriesQuery();
    const [uploadProductImage] = useUploadProductImageMutation();
+   const [uploadProductZip] = useUploadProductZipMutation();
    const [updateProduct] = useUpdateProductMutation();
    const [deleteProduct] = useDeleteProductMutation();
 
@@ -33,10 +42,11 @@ const AdminProductUpdate = () => {
          setBrand(productData.brand);
          setImage(productData.image);
          setStock(productData.countInStock);
+         setZipFile(productData.zipFile);
       }
    }, [productData]);
 
-   const uploadFileHandler = async (e) => {
+   const uploadImageHandler = async (e) => {
       const file = e.target.files[0]; // Assuming only one file is uploaded
       setImage(file); // Update image state to the File object
 
@@ -50,6 +60,24 @@ const AdminProductUpdate = () => {
       } catch (err) {
          console.error("Image upload failed:", err);
          alert("Image upload failed. Try again.");
+      }
+   };
+
+   const uploadZipHandler = async (e) => {
+      const file = e.target.files[0];
+      setZipFile(file);
+
+      const formData = new FormData();
+      formData.append("zipfile", file);
+
+      try {
+         const res = await uploadProductZip(formData).unwrap();
+         alert("ZIP file uploaded successfully");
+         setZipFile(res.file); // Update zipFile state with the URL returned from the server if needed
+         setZipUrl(res.file);
+      } catch (err) {
+         console.error("ZIP file upload failed:", err);
+         alert("ZIP file upload failed. Try again.");
       }
    };
 
@@ -68,6 +96,11 @@ const AdminProductUpdate = () => {
       // Only append image if it's changed
       if (typeof image === "object") {
          formData.append("image", image); // Assuming image is already a File object
+      }
+
+      // Only append zipFile if it's changed
+      if (typeof zipFile === "object") {
+         formData.append("zipfile", zipFile);
       }
 
       try {
@@ -115,7 +148,20 @@ const AdminProductUpdate = () => {
                <div className="mb-3">
                   <label className="text-white py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
                      {image ? (typeof image === "object" ? image.name : "Uploaded image") : "Upload image"}
-                     <input type="file" name="image" accept="image/*" onChange={uploadFileHandler} className="text-white" />
+                     <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className="text-white" />
+                  </label>
+               </div>
+
+               {zipUrl && (
+                  <div className="text-center">
+                     <p className="block mx-auto">ZIP File Uploaded: {zipUrl}</p>
+                  </div>
+               )}
+
+               <div className="mb-3">
+                  <label className="text-white py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
+                     {zipFile ? (typeof zipFile === "object" ? zipFile.name : "Uploaded ZIP File") : "Upload ZIP File"}
+                     <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className="text-white" />
                   </label>
                </div>
 
