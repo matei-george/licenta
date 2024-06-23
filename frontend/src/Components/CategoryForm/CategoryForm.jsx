@@ -1,4 +1,6 @@
 // eslint-disable-next-line react/prop-types
+import "./CategoryForm.css";
+
 const CategoryForm = ({ value, setValue, handleSubmit, buttonText = "Adaugă", handleDelete }) => {
    return (
       <div className="p-3">
@@ -12,7 +14,7 @@ const CategoryForm = ({ value, setValue, handleSubmit, buttonText = "Adaugă", h
             />
 
             <div className="flex justify-between">
-               <button className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 foucs:ring-pink-500 focus:ring-opacity-50">
+               <button className="bg-pink-500 text-white py-2 px-4 rounded-lg hover:bg-pink-600 focus:outline-none focus:ring-2 foucs:ring-pink-500 focus:ring-opacity-50 add-category-button">
                   {buttonText}
                </button>
 

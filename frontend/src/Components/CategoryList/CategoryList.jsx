@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useCreateCategoryMutation, useUpdateCategoryMutation, useDeleteCategoryMutation, useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice.js";
 import CategoryForm from "../CategoryForm/CategoryForm.jsx";
-import AdminMenu from "../AdminMenu/AdminMenu.jsx";
+import AdminNavbar from "../AdminNavbar/AdminNavbar.jsx";
 
 const CategoryList = () => {
    const { data: categories } = useFetchCategoriesQuery();
@@ -81,41 +81,42 @@ const CategoryList = () => {
    };
 
    return (
-      <div className="ml-[10rem] flex flex-col md:flex-row">
-         <AdminMenu />
-         <div className="md:w-3/4 p-3">
-            <div className="h-12">Gestionează categoriile</div>
-            <CategoryForm value={name} setValue={setName} handleSubmit={handleCreateCategory} />
-            <br />
-            <hr />
+      <>
+         <AdminNavbar />
+         <div className="ml-[10rem] flex flex-col md:flex-row">
+            <div className="w-full px-12 mr-24">
+               <div className="h-12 text-3xl text-center font-semibold my-8">Gestionează categoriile</div>
+               <CategoryForm value={name} setValue={setName} handleSubmit={handleCreateCategory} />
+               <br />
+               <hr />
 
-            <div className="flex flex-wrap">
-               {categories?.map((category) => (
-                  <div key={category._id}>
-                     <button
-                        className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
-                        onClick={() => {
-                           setSelectedCategory(category);
-                           setUpdatingName(category.name);
-                        }}
-                     >
-                        {category.name}
-                     </button>
-                  </div>
-               ))}
+               <div className="flex flex-wrap">
+                  {categories?.map((category) => (
+                     <div key={category._id}>
+                        <button
+                           className="bg-white border py-2 px-4 rounded-lg hover:font-bold m-3 focus:outline-none focus:ring-2  focus:ring-opacity-50 "
+                           onClick={() => {
+                              setSelectedCategory(category);
+                              setUpdatingName(category.name);
+                           }}
+                        >
+                           {category.name}
+                        </button>
+                     </div>
+                  ))}
+               </div>
+               {selectedCategory && (
+                  <CategoryForm
+                     value={updatingName}
+                     setValue={(value) => setUpdatingName(value)}
+                     handleSubmit={handleUpdateCategory}
+                     buttonText="Actualizează"
+                     handleDelete={handleDeleteCategory}
+                  />
+               )}
             </div>
-
-            {selectedCategory && (
-               <CategoryForm
-                  value={updatingName}
-                  setValue={(value) => setUpdatingName(value)}
-                  handleSubmit={handleUpdateCategory}
-                  buttonText="Actualizează"
-                  handleDelete={handleDeleteCategory}
-               />
-            )}
          </div>
-      </div>
+      </>
    );
 };
 

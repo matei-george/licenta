@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useAllProductsQuery } from "../../redux/api/productApiSlice";
-import AdminMenu from "../AdminMenu/AdminMenu";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
+
+import "./AllProducts.css";
 
 const AllProducts = () => {
    const { data: products, isLoading, isError } = useAllProductsQuery();
@@ -16,7 +18,8 @@ const AllProducts = () => {
 
    return (
       <>
-         <div className="container mx-[9rem]">
+         <AdminNavbar />
+         <div className="container mx-[9rem] my-12">
             <div className="flex flex-col  md:flex-row">
                <div className="p-3">
                   <div className="ml-[2rem] text-xl font-bold h-12">Toate produsele ({products.length})</div>
@@ -37,7 +40,7 @@ const AllProducts = () => {
                                  <div className="flex justify-between">
                                     <Link
                                        to={`/admin/product/update/${product._id}`}
-                                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+                                       className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded focus:ring-4 focus:outline-none update-product-button"
                                     >
                                        Actualizează produs
                                        <svg className="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -51,9 +54,6 @@ const AllProducts = () => {
                         </Link>
                      ))}
                   </div>
-               </div>
-               <div className="md:w-1/4 p-3 mt-2">
-                  <AdminMenu />
                </div>
             </div>
          </div>

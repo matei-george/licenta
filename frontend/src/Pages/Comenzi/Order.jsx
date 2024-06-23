@@ -110,12 +110,10 @@ const Order = () => {
                         <table className="w-full">
                            <thead className="border-b-2">
                               <tr>
-                                 <th className="p-2">Imagine</th>
-                                 <th className="p-2">Nume Produs</th>
-                                 <th className="p-2 text-center">Cantitate</th>
-                                 <th className="p-2">Prețul unității</th>
-                                 <th className="p-2">Total</th>
-                                 <th className="p-2">Descărcabil</th>
+                                 <th className="p-2 text-left font-semibold">Imagine</th>
+                                 <th className="p-2 text-left font-semibold">Nume Produs</th>
+                                 <th className="p-2 font-semibold">Preț</th>
+                                 <th className="p-2 font-semibold">Descărcabil</th>
                               </tr>
                            </thead>
 
@@ -126,12 +124,10 @@ const Order = () => {
                                        <img src={item.image} alt={item.name} className="w-16 h-16 object-cover" />
                                     </td>
                                     <td className="p-2">
-                                       <Link to={`/product/${item.product}`} className="text-blue-600">
+                                       <Link to={`/product/${item.product}`} className="text-blue-900">
                                           {item.name}
                                        </Link>
                                     </td>
-                                    <td className="p-2 text-center">{item.qty}</td>
-                                    <td className="p-2 text-center">LEI {item.price.toFixed(2)}</td>
                                     <td className="p-2 text-center">LEI {(item.qty * item.price).toFixed(2)}</td>
                                     <td className="p-2 text-center">
                                        {order.isPaid && item.zipfile && (
@@ -153,24 +149,24 @@ const Order = () => {
                <div className="border-b border-gray-300 pb-4 mb-4">
                   <h2 className="text-xl font-bold mb-2">Date facturare</h2>
                   <p className="mb-4 mt-4">
-                     <strong className="text-pink-500">Comanda:</strong> {order._id}
+                     <strong className="text-blue-900 font-semibold">Comanda:</strong> {order._id}
                   </p>
 
                   <p className="mb-4">
-                     <strong className="text-pink-500">Nume:</strong> {order.user.username}
+                     <strong className="text-blue-900 font-semibold">Nume:</strong> {order.user.username}
                   </p>
 
                   <p className="mb-4">
-                     <strong className="text-pink-500">Email:</strong> {order.user.email}
+                     <strong className="text-blue-900 font-semibold">Email:</strong> {order.user.email}
                   </p>
 
                   <p className="mb-4">
-                     <strong className="text-pink-500">Adresă:</strong> {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postalCode},{" "}
-                     {order.shippingAddress.country}
+                     <strong className="text-blue-900 font-semibold">Adresă:</strong> {order.shippingAddress.address}, {order.shippingAddress.city}{" "}
+                     {order.shippingAddress.postalCode}, {order.shippingAddress.country}
                   </p>
 
                   <p className="mb-4">
-                     <strong className="text-pink-500">Metodă de plată:</strong> {order.paymentMethod}
+                     <strong className="text-blue-900 font-semibold">Metodă de plată:</strong> {order.paymentMethod}
                   </p>
 
                   {order.isPaid ? <Message variant="success">Achitat pe {order.paidAt}</Message> : <Message variant="danger">Neachitat</Message>}
@@ -179,7 +175,7 @@ const Order = () => {
                <h2 className="text-xl font-bold mb-2 mt-4">Sumarul comenzii</h2>
                <div className="flex justify-between mb-2">
                   <span>Valoare produse</span>
-                  <span>LEI{order.itemsPrice.toFixed(2)}</span>
+                  <span>LEI {order.itemsPrice.toFixed(2)}</span>
                </div>
                <div className="flex justify-between items-center mb-2">
                   <span>Taxe</span>

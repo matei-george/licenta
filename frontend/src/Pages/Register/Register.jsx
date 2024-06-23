@@ -5,7 +5,6 @@ import "./Register.css";
 import { useRegisterMutation } from "../../redux/api/usersApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/auth/authSlice";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
 
 const Register = () => {
@@ -20,18 +19,19 @@ const Register = () => {
    const handleSubmit = async (e) => {
       e.preventDefault();
       if (password !== confirmPassword) {
-         toast.error("Parolele nu coincid.");
+         alert("Parolele nu coincid.");
          return;
       }
 
       try {
          const userData = { username, email, password };
          const newUser = await register(userData).unwrap();
-         dispatch(setCredentials(...newUser)); // Assuming newUser contains user info
+         dispatch(setCredentials(newUser)); // Assuming newUser contains user info
          // Optionally, perform additional actions after registration
+         alert("Inregistrare cu succes! Bine ai venit pe WebHub!");
          navigate("/");
       } catch (error) {
-         toast.error(error.message || "Eroare la înregistrare.");
+         alert(error.message || "Eroare la înregistrare.");
          // Handle error: display message, reset form, etc.
       }
    };

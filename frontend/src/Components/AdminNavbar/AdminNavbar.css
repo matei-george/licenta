@@ -1,0 +1,7 @@
+.adm__subtitle {
+   font-family: var(--inter);
+   color: var(--accent-3);
+   position: absolute;
+   bottom: 5px;
+   left: 195px;
+}

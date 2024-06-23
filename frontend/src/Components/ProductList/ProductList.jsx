@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCreateProductMutation, useUploadProductImageMutation, useUploadProductZipMutation } from "../../redux/api/productApiSlice";
 import { useFetchCategoriesQuery } from "../../redux/api/categoryApiSlice";
-import AdminMenu from "../AdminMenu/AdminMenu";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
+
+import "./ProductList.css";
 
 const ProductList = () => {
    const [image, setImage] = useState("");
@@ -81,113 +83,140 @@ const ProductList = () => {
    };
 
    return (
-      <div className="container xl:mx-[9rem] sm:mx-[0]">
-         <div className="flex flex-col md:flex-row">
-            <AdminMenu />
-            <div className="md:w-3/4 p-3">
-               <div className="h-12">Crează produs</div>
+      <>
+         <AdminNavbar />
 
-               {imageUrl && (
-                  <div className="text-center">
-                     <img src={imageUrl} alt="product" className="block mx-auto max-h-[200px]" />
-                  </div>
-               )}
+         <div className="container xl:mx-[9rem] sm:mx-[0]">
+            <div className="flex flex-col md:flex-row">
+               <div className="w-full px-12 mr-24">
+                  <div className="h-12 text-3xl text-center font-semibold my-8">Crează un produs</div>
 
-               <div className="mb-3">
-                  <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                     {image ? image.name : "Încarcă imaginea"}
-
-                     <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className={!image ? "hidden" : "text-white"} />
-                  </label>
-               </div>
-
-               {zipUrl && (
-                  <div className="text-center">
-                     <p className="block mx-auto">ZIP File Uploaded: {zipUrl}</p>
-                  </div>
-               )}
-
-               <div className="mb-3">
-                  <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                     {zipFile ? zipFile.name : "Încarcă fișierul ZIP"}
-
-                     <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className={!zipFile ? "hidden" : "text-white"} />
-                  </label>
-               </div>
-
-               <div className="p-3">
-                  <div className="flex flex-wrap">
-                     <div className="one">
-                        <label htmlFor="name">Nume</label> <br />
-                        <input type="text" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" value={name} onChange={(e) => setName(e.target.value)} />
+                  {imageUrl && (
+                     <div className="text-center">
+                        <img src={imageUrl} alt="product" className="block mx-auto max-h-[200px]" />
                      </div>
-                     <div className="two ml-10 ">
-                        <label htmlFor="price">Preț</label> <br />
-                        <input
-                           type="number"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                           value={price}
-                           onChange={(e) => setPrice(e.target.value)}
-                        />
-                     </div>
-                  </div>
-                  <div className="flex flex-wrap">
-                     <div className="one">
-                        <label htmlFor="quantity">Cantitate</label> <br />
-                        <input
-                           type="number"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                           value={quantity}
-                           onChange={(e) => setQuantity(e.target.value)}
-                        />
-                     </div>
-                     <div className="two ml-10 ">
-                        <label htmlFor="brand">Brand</label> <br />
-                        <input type="text" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" value={brand} onChange={(e) => setBrand(e.target.value)} />
-                     </div>
+                  )}
+
+                  <div className="mb-3 border rounded-lg p-4">
+                     <label className="block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+                        {image ? image.name : "Încarcă imaginea"}
+                        <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className="hidden" />
+                     </label>
                   </div>
 
-                  <label htmlFor="description" className="my-5">
-                     Descriere
-                  </label>
-                  <textarea
-                     id="description"
-                     className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white"
-                     value={description}
-                     onChange={(e) => setDescription(e.target.value)}
-                  ></textarea>
-
-                  <div className="flex justify-between">
-                     <div>
-                        <label htmlFor="stock">Număr pe stoc</label> <br />
-                        <input
-                           type="number"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                           value={stock}
-                           onChange={(e) => setStock(e.target.value)}
-                        />
+                  {zipUrl && (
+                     <div className="text-center">
+                        <p className="block mx-auto">ZIP File Uploaded: {zipUrl}</p>
                      </div>
+                  )}
 
-                     <div>
-                        <label htmlFor="category">Categorie</label> <br />
-                        <select id="category" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" onChange={(e) => setCategory(e.target.value)}>
-                           <option value="">Selectează categoria</option>
-                           {categories?.map((c) => (
-                              <option key={c._id} value={c._id}>
-                                 {c.name}
-                              </option>
-                           ))}
-                        </select>
-                     </div>
+                  <div className="mb-3 border rounded-lg p-4">
+                     <label className="block w-full text-center rounded-lg cursor-pointer font-bold py-11">
+                        {zipFile ? zipFile.name : "Încarcă fișierul ZIP"}
+                        <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className="hidden" />
+                     </label>
                   </div>
 
-                  <button onClick={handleSubmit} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600">
-                     Crează
-                  </button>
+                  <div className="p-3">
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="name" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Nume
+                           </label>
+                           <input
+                              type="text"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="price" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Preț
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={price}
+                              onChange={(e) => setPrice(e.target.value)}
+                           />
+                        </div>
+                     </div>
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="quantity" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Cantitate
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={quantity}
+                              onChange={(e) => setQuantity(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Brand
+                           </label>
+                           <input
+                              type="text"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={brand}
+                              onChange={(e) => setBrand(e.target.value)}
+                           />
+                        </div>
+                     </div>
+
+                     <label htmlFor="description" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Descriere
+                     </label>
+                     <textarea
+                        id="description"
+                        className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                     ></textarea>
+
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Număr pe stoc
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={stock}
+                              onChange={(e) => setStock(e.target.value)}
+                           />
+                        </div>
+
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Categorie
+                           </label>
+                           <select
+                              id="category"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              onChange={(e) => setCategory(e.target.value)}
+                           >
+                              <option value="">Selectează categoria</option>
+                              {categories?.map((c) => (
+                                 <option key={c._id} value={c._id}>
+                                    {c.name}
+                                 </option>
+                              ))}
+                           </select>
+                        </div>
+                     </div>
+
+                     <button onClick={handleSubmit} className="py-4 px-10 rounded-lg text-lg font-bold bg-blue-500 text-white create-product-button">
+                        Crează
+                     </button>
+                  </div>
                </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AdminMenu from "../AdminMenu/AdminMenu.jsx";
+import AdminNavbar from "../AdminNavbar/AdminNavbar.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import {
    useUpdateProductMutation,
@@ -133,119 +133,145 @@ const AdminProductUpdate = () => {
    };
 
    return (
-      <div className="container xl:mx-[9rem] sm:mx-[0]">
-         <div className="flex flex-col md:flex-row">
-            <AdminMenu />
-            <div className="md:w-3/4 p-3">
-               <div className="h-12">Update / Delete Product</div>
+      <>
+         <AdminNavbar />
+         <div className="container xl:mx-[9rem] sm:mx-[0]">
+            <div className="flex flex-col md:flex-row">
+               <div className="w-full px-12 mr-24">
+                  <div className="h-12 text-3xl text-center font-semibold my-8">Actualizează un produs</div>
 
-               {image && (
-                  <div className="text-center">
-                     <img src={typeof image === "object" ? URL.createObjectURL(image) : image} alt="product" className="block mx-auto w-full h-[40%]" />
+                  {image && (
+                     <div className="text-center">
+                        <img src={typeof image === "object" ? URL.createObjectURL(image) : image} alt="product" className="block mx-auto max-h-[400px]" />
+                     </div>
+                  )}
+
+                  <div className="mb-3 border rounded-lg p-4">
+                     <label className="block w-full text-center rounded-lg cursor-pointer font-bold py-4">
+                        {image ? (typeof image === "object" ? image.name : "Încarcă imaginea") : "Încarcă imaginea"}
+                        <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className="hidden" />
+                     </label>
                   </div>
-               )}
 
-               <div className="mb-3">
-                  <label className="text-white py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
-                     {image ? (typeof image === "object" ? image.name : "Uploaded image") : "Upload image"}
-                     <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className="text-white" />
-                  </label>
-               </div>
+                  {zipUrl && (
+                     <div className="text-center">
+                        <p className="block mx-auto">Fișier ZIP încărcat: {zipUrl}</p>
+                     </div>
+                  )}
 
-               {zipUrl && (
-                  <div className="text-center">
-                     <p className="block mx-auto">ZIP File Uploaded: {zipUrl}</p>
+                  <div className="mb-3 border rounded-lg p-4">
+                     <label className="block w-full text-center rounded-lg cursor-pointer font-bold py-4">
+                        {zipFile ? (typeof zipFile === "object" ? zipFile.name : "Fișier ZIP încărcat") : "Încarcă fișierul ZIP"}
+                        <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className="hidden" />
+                     </label>
                   </div>
-               )}
 
-               <div className="mb-3">
-                  <label className="text-white py-2 px-4 block w-full text-center rounded-lg cursor-pointer font-bold">
-                     {zipFile ? (typeof zipFile === "object" ? zipFile.name : "Uploaded ZIP File") : "Upload ZIP File"}
-                     <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className="text-white" />
-                  </label>
-               </div>
-
-               <div className="p-3">
-                  <div className="flex flex-wrap">
-                     <div className="one">
-                        <label htmlFor="name">Name</label> <br />
-                        <input
-                           type="text"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
-                           value={name}
-                           onChange={(e) => setName(e.target.value)}
-                        />
+                  <div className="p-3">
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="name" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Nume
+                           </label>
+                           <input
+                              type="text"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="price" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Preț
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={price}
+                              onChange={(e) => setPrice(e.target.value)}
+                           />
+                        </div>
+                     </div>
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="quantity" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Cantitate
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={quantity}
+                              onChange={(e) => setQuantity(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Brand
+                           </label>
+                           <input
+                              type="text"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={brand}
+                              onChange={(e) => setBrand(e.target.value)}
+                           />
+                        </div>
                      </div>
 
-                     <div className="two">
-                        <label htmlFor="price">Price</label> <br />
-                        <input
-                           type="number"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
-                           value={price}
-                           onChange={(e) => setPrice(e.target.value)}
-                        />
-                     </div>
-                  </div>
+                     <label htmlFor="description" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                        Descriere
+                     </label>
+                     <textarea
+                        id="description"
+                        className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                     ></textarea>
 
-                  <div className="flex flex-wrap">
+                     <div className="flex flex-wrap mb-6">
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Număr pe stoc
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={stock}
+                              onChange={(e) => setStock(e.target.value)}
+                           />
+                        </div>
+
+                        <div className="w-full md:w-1/2 px-3">
+                           <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Categorie
+                           </label>
+                           <select
+                              id="category"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={category}
+                              onChange={(e) => setCategory(e.target.value)}
+                           >
+                              <option value="">Selectează categoria</option>
+                              {categories.map((c) => (
+                                 <option key={c._id} value={c._id}>
+                                    {c.name}
+                                 </option>
+                              ))}
+                           </select>
+                        </div>
+                     </div>
+
                      <div>
-                        <label htmlFor="quantity">Quantity</label> <br />
-                        <input
-                           type="number"
-                           min="1"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
-                           value={quantity}
-                           onChange={(e) => setQuantity(e.target.value)}
-                        />
+                        <button onClick={handleSubmit} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold mr-6 text-white update-product-button">
+                           Actualizează
+                        </button>
+                        <button onClick={handleDelete} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600 text-white">
+                           Șterge
+                        </button>
                      </div>
-                     <div>
-                        <label htmlFor="brand">Brand</label> <br />
-                        <input type="text" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" value={brand} onChange={(e) => setBrand(e.target.value)} />
-                     </div>
-                  </div>
-
-                  <label htmlFor="description" className="my-5">
-                     Description
-                  </label>
-                  <textarea className="p-2 mb-3 bg-[#101011] border rounded-lg w-[95%] text-white" value={description} onChange={(e) => setDescription(e.target.value)} />
-
-                  <div className="flex justify-between">
-                     <div>
-                        <label htmlFor="stock">Count In Stock</label> <br />
-                        <input
-                           type="text"
-                           className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
-                           value={stock}
-                           onChange={(e) => setStock(e.target.value)}
-                        />
-                     </div>
-
-                     <div>
-                        <label htmlFor="category">Category</label> <br />
-                        <select className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" value={category} onChange={(e) => setCategory(e.target.value)}>
-                           <option value="">Choose Category</option>
-                           {categories.map((c) => (
-                              <option key={c._id} value={c._id}>
-                                 {c.name}
-                              </option>
-                           ))}
-                        </select>
-                     </div>
-                  </div>
-
-                  <div>
-                     <button onClick={handleSubmit} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-green-600 mr-6">
-                        Update
-                     </button>
-                     <button onClick={handleDelete} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600">
-                        Delete
-                     </button>
                   </div>
                </div>
             </div>
          </div>
-      </div>
+      </>
    );
 };
 

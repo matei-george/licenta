@@ -7,6 +7,8 @@ import { useProfileMutation } from "../../redux/api/usersApiSlice";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { Link } from "react-router-dom";
 
+import "./Profile.css";
+
 const Profile = () => {
    const [username, setUserName] = useState("");
    const [email, setEmail] = useState("");
@@ -51,17 +53,17 @@ const Profile = () => {
                <h2 className="text-2xl font-semibold mb-4">Actualizează profilul</h2>
                <form onSubmit={submitHandler}>
                   <div className="mb-4">
-                     <label className="block text-white mb-2">Nume</label>
+                     <label className="block mb-2 font-semibold">Nume</label>
                      <input type="text" placeholder="Enter name" className="form-input p-4 rounded-sm w-full" value={username} onChange={(e) => setUserName(e.target.value)} />
                   </div>
 
                   <div className="mb-4">
-                     <label className="block text-white mb-2">Adresă e-mail</label>
+                     <label className="block mb-2 font-semibold">Adresă e-mail</label>
                      <input type="email" placeholder="Enter email" className="form-input p-4 rounded-sm w-full" value={email} onChange={(e) => setEmail(e.target.value)} />
                   </div>
 
                   <div className="mb-4">
-                     <label className="block text-white mb-2">Parola</label>
+                     <label className="block mb-2 font-semibold">Parola</label>
                      <input
                         type="password"
                         placeholder="Enter password"
@@ -72,7 +74,7 @@ const Profile = () => {
                   </div>
 
                   <div className="mb-4">
-                     <label className="block text-white mb-2">Confirmă Parola</label>
+                     <label className="block mb-2 font-semibold">Confirmă Parola</label>
                      <input
                         type="password"
                         placeholder="Confirm password"
@@ -83,11 +85,11 @@ const Profile = () => {
                   </div>
 
                   <div className="flex justify-between">
-                     <button type="submit" className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600">
+                     <button type="submit" className="bg-pink-500 text-white py-2 px-4 rounded hover:bg-pink-600 profile-button">
                         Actualizează
                      </button>
 
-                     <Link to="/user-orders" className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700">
+                     <Link to="/user-orders" className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700 profile-button">
                         Comenzile Mele
                      </Link>
                   </div>

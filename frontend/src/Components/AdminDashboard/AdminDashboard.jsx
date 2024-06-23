@@ -3,9 +3,9 @@ import { useGetUsersQuery } from "../../redux/api/usersApiSlice";
 import { useGetTotalOrdersQuery, useGetTotalSalesByDateQuery, useGetTotalSalesQuery } from "../../redux/api/orderApiSlice";
 
 import { useState, useEffect } from "react";
-import AdminMenu from "../AdminMenu/AdminMenu";
 import OrderList from "../OrderList/OrderList";
 import Loader from "../Loader/Loader";
+import AdminNavbar from "../AdminNavbar/AdminNavbar";
 
 const AdminDashboard = () => {
    const { data: sales, isLoading } = useGetTotalSalesQuery();
@@ -21,7 +21,7 @@ const AdminDashboard = () => {
          tooltip: {
             theme: "dark",
          },
-         colors: ["#00E396"],
+         colors: ["#1c4563"],
          dataLabels: {
             enabled: true,
          },
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
             curve: "smooth",
          },
          title: {
-            text: "Sales Trend",
+            text: "Grafic Vânzări",
             align: "left",
          },
          grid: {
@@ -41,14 +41,28 @@ const AdminDashboard = () => {
          xaxis: {
             categories: [],
             title: {
-               text: "Date",
+               text: "Data",
+            },
+            labels: {
+               formatter: function (val) {
+                  return new Date(val).toLocaleDateString("en-US", {
+                     day: "2-digit",
+                     month: "2-digit",
+                     year: "2-digit",
+                  });
+               },
             },
          },
          yaxis: {
             title: {
-               text: "Sales",
+               text: "Suma vânzărilor",
             },
             min: 0,
+            labels: {
+               formatter: function (val) {
+                  return val.toFixed(0); // Less precision
+               },
+            },
          },
          legend: {
             position: "top",
@@ -58,7 +72,7 @@ const AdminDashboard = () => {
             offsetX: -5,
          },
       },
-      series: [{ name: "Sales", data: [] }],
+      series: [{ name: "Vânzări", data: [] }],
    });
 
    useEffect(() => {
@@ -73,10 +87,10 @@ const AdminDashboard = () => {
             options: {
                ...prevState.options,
                xaxis: {
+                  ...prevState.options.xaxis,
                   categories: formattedSalesDate.map((item) => item.x),
                },
             },
-
             series: [{ name: "Sales", data: formattedSalesDate.map((item) => item.y) }],
          }));
       }
@@ -84,36 +98,26 @@ const AdminDashboard = () => {
 
    return (
       <>
-         <AdminMenu />
+         <AdminNavbar />
 
-         <section className="xl:ml-[4rem] md:ml-[0rem]">
-            <div className="w-[80%] flex justify-around flex-wrap">
-               <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-                  <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">$</div>
-
-                  <p className="mt-5">Sales</p>
-                  <h1 className="text-xl font-bold">$ {isLoading ? <Loader /> : sales.totalSales.toFixed(2)}</h1>
+         <section className="flex flex-col items-center text-blue-900">
+            <div className="flex justify-around flex-wrap w-full max-w-screen-lg px-4 py-6">
+               <div className="rounded-lg  shadow-xl p-5 w-80 mt-5 text-center">
+                  <p className="mt-5">Vânzări</p>
+                  <h1 className="text-xl font-bold">{isLoading ? <Loader /> : `LEI ${sales.totalSales.toFixed(2)}`}</h1>
                </div>
-               <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-                  <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">$</div>
-
-                  <p className="mt-5">Customers</p>
-                  <h1 className="text-xl font-bold">$ {isLoading ? <Loader /> : customers?.length}</h1>
+               <div className="rounded-lg  shadow-xl p-5 w-80 mt-5 text-center">
+                  <p className="mt-5">Clienți</p>
+                  <h1 className="text-xl font-bold">{loading ? <Loader /> : customers?.length}</h1>
                </div>
-               <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-                  <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">$</div>
-
-                  <p className="mt-5">All Orders</p>
-                  <h1 className="text-xl font-bold">$ {isLoading ? <Loader /> : orders?.totalOrders}</h1>
+               <div className="rounded-lg shadow-xl p-5 w-80 mt-5 text-center">
+                  <p className="mt-5">Număr total de comenzi</p>
+                  <h1 className="text-xl font-bold">{loadingTwo ? <Loader /> : orders?.totalOrders}</h1>
                </div>
             </div>
 
-            <div className="ml-[10rem] mt-[4rem]">
-               <Chart options={state.options} series={state.series} type="line" width="70%" />
-            </div>
-
-            <div className="mt-[4rem]">
-               <OrderList />
+            <div className="w-full max-w-screen-lg mt-10">
+               <Chart options={state.options} series={state.series} type="line" width="100%" />
             </div>
          </section>
       </>
