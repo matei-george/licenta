@@ -40,3 +40,19 @@
 .dropdown-content {
    right: -10px;
 }
+
+.dropdown {
+   z-index: 1;
+}
+
+.delogare-button {
+   background-color: var(--accent-3);
+   color: white;
+   transition: all 300ms;
+   border-bottom-right-radius: 10px;
+   border-bottom-left-radius: 10px;
+}
+
+.delogare-button:hover {
+   background-color: var(--accent-1);
+}

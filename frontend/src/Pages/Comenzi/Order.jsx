@@ -99,108 +99,112 @@ const Order = () => {
    ) : error ? (
       <Message variant="danger">{error.data.message}</Message>
    ) : (
-      <div className="container flex flex-col ml-[10rem] md:flex-row">
-         <div className="md:w-2/3 pr-4">
-            <div className="border gray-300 mt-5 pb-4 mb-5">
-               {order.orderItems.length === 0 ? (
-                  <Message>Comanda nu are produse</Message>
-               ) : (
-                  <div className="overflow-x-auto">
-                     <table className="w-[80%]">
-                        <thead className="border-b-2">
-                           <tr>
-                              <th className="p-2">Imagine</th>
-                              <th className="p-2">Nume Produs</th>
-                              <th className="p-2 text-center">Cantitate</th>
-                              <th className="p-2">Prețul unității</th>
-                              <th className="p-2">Total</th>
-                              <th className="p-2">Descărcabil</th>
-                           </tr>
-                        </thead>
-
-                        <tbody>
-                           {order.orderItems.map((item, index) => (
-                              <tr key={index}>
-                                 <td className="p-2">
-                                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover" />
-                                 </td>
-                                 <td className="p-2">
-                                    <Link to={`/product/${item.product}`}>{item.name}</Link>
-                                 </td>
-                                 <td className="p-2 text-center">{item.qty}</td>
-                                 <td className="p-2 text-center">{item.price}</td>
-                                 <td className="p-2 text-center">&euro;{(item.qty * item.price).toFixed(2)}</td>
-                                 <td className="p-2 text-center">
-                                    {order.isPaid && item.zipfile && (
-                                       <button onClick={() => handleDownload(item.zipfile)} className="bg-blue-500 text-white py-2 px-4">
-                                          Descarcă ZIP
-                                       </button>
-                                    )}
-                                 </td>
-                              </tr>
-                           ))}
-                        </tbody>
-                     </table>
-                  </div>
-               )}
-            </div>
-         </div>
-
-         <div className="md:w-1/3">
-            <div className="mt-5 border-gray-300 pb-4 mb-4">
-               <h2 className="text-xl font-bold mb-2">Date facturare</h2>
-               <p className="mb-4 mt-4">
-                  <strong className="text-pink-500">Comanda:</strong> {order._id}
-               </p>
-
-               <p className="mb-4">
-                  <strong className="text-pink-500">Nume:</strong> {order.user.username}
-               </p>
-
-               <p className="mb-4">
-                  <strong className="text-pink-500">Email:</strong> {order.user.email}
-               </p>
-
-               <p className="mb-4">
-                  <strong className="text-pink-500">Adresă:</strong> {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postalCode},{" "}
-                  {order.shippingAddress.country}
-               </p>
-
-               <p className="mb-4">
-                  <strong className="text-pink-500">Metodă de plată:</strong> {order.paymentMethod}
-               </p>
-
-               {order.isPaid ? <Message variant="success">Achitat pe {order.paidAt}</Message> : <Message variant="danger">Neachitat</Message>}
-            </div>
-
-            <h2 className="text-xl font-bold mb-2 mt-[3rem]">Sumarul comenzii</h2>
-            <div className="flex justify-between mb-2">
-               <span>Valoare produse</span>
-               <span>&euro;{order.itemsPrice}</span>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-               <span>Taxe</span>
-               <span>&euro;{order.taxPrice}</span>
-            </div>
-            <div className="flex justify-between items-center mb-2">
-               <span>Total</span>
-               <span>&euro;{order.totalPrice}</span>
-            </div>
-
-            {!order.isPaid && (
-               <div>
-                  {loadingPay && <Loader />}{" "}
-                  {isPending ? (
-                     <Loader />
+      <div className="container mx-auto mt-8 p-4 rounded">
+         <div className="flex flex-col lg:flex-row lg:justify-between">
+            <div className="lg:w-2/3">
+               <div className="border-b border-gray-300 pb-4 mb-5">
+                  {order.orderItems.length === 0 ? (
+                     <Message>Comanda nu are produse</Message>
                   ) : (
-                     <div>
-                        <div>
-                           <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError}></PayPalButtons>
-                        </div>
+                     <div className="overflow-x-auto">
+                        <table className="w-full">
+                           <thead className="border-b-2">
+                              <tr>
+                                 <th className="p-2">Imagine</th>
+                                 <th className="p-2">Nume Produs</th>
+                                 <th className="p-2 text-center">Cantitate</th>
+                                 <th className="p-2">Prețul unității</th>
+                                 <th className="p-2">Total</th>
+                                 <th className="p-2">Descărcabil</th>
+                              </tr>
+                           </thead>
+
+                           <tbody>
+                              {order.orderItems.map((item, index) => (
+                                 <tr key={index}>
+                                    <td className="p-2">
+                                       <img src={item.image} alt={item.name} className="w-16 h-16 object-cover" />
+                                    </td>
+                                    <td className="p-2">
+                                       <Link to={`/product/${item.product}`} className="text-blue-600">
+                                          {item.name}
+                                       </Link>
+                                    </td>
+                                    <td className="p-2 text-center">{item.qty}</td>
+                                    <td className="p-2 text-center">LEI {item.price.toFixed(2)}</td>
+                                    <td className="p-2 text-center">LEI {(item.qty * item.price).toFixed(2)}</td>
+                                    <td className="p-2 text-center">
+                                       {order.isPaid && item.zipfile && (
+                                          <button onClick={() => handleDownload(item.zipfile)} className="bg-blue-500 text-white py-2 px-4 rounded">
+                                             Descarcă ZIP
+                                          </button>
+                                       )}
+                                    </td>
+                                 </tr>
+                              ))}
+                           </tbody>
+                        </table>
                      </div>
                   )}
                </div>
-            )}
+            </div>
+
+            <div className="lg:w-1/3">
+               <div className="border-b border-gray-300 pb-4 mb-4">
+                  <h2 className="text-xl font-bold mb-2">Date facturare</h2>
+                  <p className="mb-4 mt-4">
+                     <strong className="text-pink-500">Comanda:</strong> {order._id}
+                  </p>
+
+                  <p className="mb-4">
+                     <strong className="text-pink-500">Nume:</strong> {order.user.username}
+                  </p>
+
+                  <p className="mb-4">
+                     <strong className="text-pink-500">Email:</strong> {order.user.email}
+                  </p>
+
+                  <p className="mb-4">
+                     <strong className="text-pink-500">Adresă:</strong> {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postalCode},{" "}
+                     {order.shippingAddress.country}
+                  </p>
+
+                  <p className="mb-4">
+                     <strong className="text-pink-500">Metodă de plată:</strong> {order.paymentMethod}
+                  </p>
+
+                  {order.isPaid ? <Message variant="success">Achitat pe {order.paidAt}</Message> : <Message variant="danger">Neachitat</Message>}
+               </div>
+
+               <h2 className="text-xl font-bold mb-2 mt-4">Sumarul comenzii</h2>
+               <div className="flex justify-between mb-2">
+                  <span>Valoare produse</span>
+                  <span>LEI{order.itemsPrice.toFixed(2)}</span>
+               </div>
+               <div className="flex justify-between items-center mb-2">
+                  <span>Taxe</span>
+                  <span>LEI {order.taxPrice.toFixed(2)}</span>
+               </div>
+               <div className="flex justify-between items-center mb-2">
+                  <span>Total</span>
+                  <span>LEI {order.totalPrice.toFixed(2)}</span>
+               </div>
+
+               {!order.isPaid && (
+                  <div>
+                     {loadingPay && <Loader />}{" "}
+                     {isPending ? (
+                        <Loader />
+                     ) : (
+                        <div>
+                           <div>
+                              <PayPalButtons createOrder={createOrder} onApprove={onApprove} onError={onError}></PayPalButtons>
+                           </div>
+                        </div>
+                     )}
+                  </div>
+               )}
+            </div>
          </div>
       </div>
    );

@@ -8,6 +8,8 @@ import { useCreateOrderMutation } from "../../redux/api/orderApiSlice";
 import { clearCartItems } from "../../redux/features/cart/cartSlice";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
+import "./PlaceOrder.css";
+
 const PlaceOrder = () => {
    const navigate = useNavigate();
    const cart = useSelector((state) => state.cart);
@@ -62,7 +64,7 @@ const PlaceOrder = () => {
       <>
          <ProgressSteps step1 step2 step3 />
 
-         <div className="container mx-auto mt-8 bg-white text-black p-4 rounded shadow">
+         <div className="container mx-auto mt-4 px-24 text-black p-4 rounded shadow">
             {cart.cartItems.length === 0 ? (
                <Message>Your cart is empty</Message>
             ) : (
@@ -101,51 +103,42 @@ const PlaceOrder = () => {
             )}
 
             <div className="mt-8">
-               <h2 className="text-2xl font-semibold mb-5">Order Summary</h2>
-               <div className="flex justify-between flex-wrap p-8 bg-gray-100 rounded shadow">
+               <h2 className="text-2xl font-semibold mb-5">Sumarul Comenzii</h2>
+               <div className="flex justify-between flex-wrap p-8 rounded shadow-xl">
                   <ul className="text-lg mb-4">
                      <li>
-                        <span className="font-semibold">Items:</span> ${cart.itemsPrice}
+                        <span className="font-semibold">Produse:</span> LEI {cart.itemsPrice}
                      </li>
                      <li>
-                        <span className="font-semibold">Shipping:</span> ${cart.shippingPrice}
+                        <span className="font-semibold">Taxe:</span> LEI {cart.taxPrice}
                      </li>
                      <li>
-                        <span className="font-semibold">Tax:</span> ${cart.taxPrice}
-                     </li>
-                     <li>
-                        <span className="font-semibold">Total:</span> ${cart.totalPrice}
+                        <span className="font-semibold">Total:</span> LEI {cart.totalPrice}
                      </li>
                   </ul>
 
                   {error && <Message variant="danger">{error.data.message}</Message>}
 
                   <div className="mb-4">
-                     <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
+                     <h2 className="text-2xl font-semibold mb-4">Facturare</h2>
                      <p>
                         <strong>Address:</strong> {cart.shippingAddress.address}, {cart.shippingAddress.city} {cart.shippingAddress.postalCode}, {cart.shippingAddress.country}
                      </p>
                   </div>
 
                   <div>
-                     <h2 className="text-2xl font-semibold mb-4">Payment Method</h2>
-                     <strong>Method:</strong> {cart.paymentMethod}
+                     <h2 className="text-2xl font-semibold mb-4">Metoda de plată</h2>
+                     <strong>Metoda:</strong> {cart.paymentMethod}
                   </div>
                </div>
 
-               {!cart.isPaid && (
-                  <div>
-                     <PayPalButtons createOrder={createPayPalOrder} onApprove={onApprove} onError={onError} />
-                  </div>
-               )}
-
                <button
                   type="button"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
+                  className="bg-blue-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4 place-order-button"
                   disabled={cart.cartItems.length === 0}
                   onClick={placeOrderHandler}
                >
-                  Place Order
+                  Plasează comanda
                </button>
 
                {isLoading && <Loader />}

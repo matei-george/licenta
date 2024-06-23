@@ -4,7 +4,9 @@ import Ratings from "../Ratings/Ratings";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import SmallProduct from "../SmallProduct/SmallProduct";
 import Loader from "../Loader/Loader";
-import moment from "moment"; // Import moment for date formatting
+import moment from "moment";
+
+import "./ProductTabs.css";
 
 const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, rating, setRating, comment, setComment, product }) => {
    const { data, isLoading } = useGetTopProductsQuery();
@@ -18,13 +20,13 @@ const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, rating, se
       <div className="flex flex-col md:flex-row">
          <section className="mr-[5rem]">
             <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 1 ? "font-bold" : ""}`} onClick={() => handleTabClick(1)}>
-               Write Your Review
+               Adaugă recenzia ta
             </div>
             <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 2 ? "font-bold" : ""}`} onClick={() => handleTabClick(2)}>
-               All Reviews
+               Toate recenziile
             </div>
             <div className={`flex-1 p-4 cursor-pointer text-lg ${activeTab === 3 ? "font-bold" : ""}`} onClick={() => handleTabClick(3)}>
-               Related Products
+               Produse similare
             </div>
          </section>
 
@@ -36,21 +38,21 @@ const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, rating, se
                      <form onSubmit={submitHandler}>
                         <div className="my-2">
                            <label htmlFor="rating" className="block text-xl mb-2">
-                              Rating
+                              Notă
                            </label>
                            <select id="rating" required value={rating} onChange={(e) => setRating(e.target.value)} className="p-2 border rounded-lg xl:w-[40rem] text-black">
-                              <option value="">Select</option>
-                              <option value="1">Inferior</option>
-                              <option value="2">Decent</option>
-                              <option value="3">Great</option>
-                              <option value="4">Excellent</option>
-                              <option value="5">Exceptional</option>
+                              <option value="">Selectează</option>
+                              <option value="1">Nesatisfăcător</option>
+                              <option value="2">Satisfăcător</option>
+                              <option value="3">Bun</option>
+                              <option value="4">Foarte bun</option>
+                              <option value="5">Excelent</option>
                            </select>
                         </div>
 
                         <div className="my-2">
                            <label htmlFor="comment" className="block text-xl mb-2">
-                              Comment
+                              Comentariu
                            </label>
                            <textarea
                               id="comment"
@@ -62,13 +64,13 @@ const ProductTabs = ({ loadingProductReview, userInfo, submitHandler, rating, se
                            ></textarea>
                         </div>
 
-                        <button type="submit" disabled={loadingProductReview} className="bg-pink-600 text-white py-2 px-4 rounded-lg">
-                           Submit
+                        <button type="submit" disabled={loadingProductReview} className="bg-pink-600 text-white py-2 px-4 rounded-lg send-review">
+                           Trimite
                         </button>
                      </form>
                   ) : (
                      <p>
-                        Please <Link to="/login">sign in</Link> to write a review
+                        Te rog <Link to="/login"> autentifică-te </Link> pentru a scrie o recenzie.
                      </p>
                   )}
                </div>

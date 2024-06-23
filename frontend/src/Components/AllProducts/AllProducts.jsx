@@ -44,7 +44,7 @@ const AllProducts = () => {
                                           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M1 5h12m0 0L9 1m4 4L9 9" />
                                        </svg>
                                     </Link>
-                                    <p>&euro; {product?.price}</p>
+                                    <p>LEI {product?.price}</p>
                                  </div>
                               </div>
                            </div>

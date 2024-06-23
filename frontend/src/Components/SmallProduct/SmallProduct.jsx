@@ -16,7 +16,7 @@ const Produs = ({ product }) => {
             <Link to={`/product/${product._id}`}>
                <h2 className="flex justify-between items-center">
                   <div className="text-sm">{product.name}</div>
-                  <span className="product-price text-xs font-medium mr-2 px-3 py-1 rounded-full">&euro; {product.price}</span>
+                  <span className="product-price text-xs font-medium mr-2 px-3 py-1 rounded-full">LEI {product.price}</span>
                </h2>
             </Link>
          </div>

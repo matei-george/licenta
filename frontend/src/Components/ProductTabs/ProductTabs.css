@@ -1,0 +1,10 @@
+.send-review {
+   background-color: var(--accent-1);
+   width: 250px;
+   height: 50px;
+   transition: all 300ms;
+}
+.send-review:hover {
+   color: var(--accent-1);
+   background-color: var(--page-bg);
+}

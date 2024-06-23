@@ -55,7 +55,7 @@ const Navbar = () => {
                </li>
                <li className="mr-6">
                   <Link to="/produse" className="nav-link font-semibold text-lg">
-                     Toate Produsele
+                     Produse
                   </Link>
                </li>
                <li className="mr-6">
@@ -69,36 +69,36 @@ const Navbar = () => {
                   </Link>
                </li>
             </ul>
-            <div className="relative flex items-center gap-5">
+            <div className="relative flex items-center gap-5 dropdown">
                {userInfo ? (
                   <div className="flex items-center gap-5 relative">
                      <img src={userIcon} alt="user-icon" className="navbar__icons cursor-pointer" onClick={toggleDropdown} />
                      {dropdownVisible && (
-                        <div className="dropdown-content absolute right-0 mr-0 w-48 bg-white shadow-md rounded-lg">
+                        <div className="dropdown-content absolute right-0 mr-4 mt-1 w-48 shadow-md rounded-lg bg-white">
                            <p className="p-2 border-b text-center font-smibold">{userInfo.username}</p>
                            {userInfo.isAdmin && (
                               <>
-                                 <Link to="/admin/dashboard" className="block px-4 py-2 hover:bg-gray-100">
+                                 <Link to="/admin/dashboard" className="block px-4 py-2 hover:font-bold">
                                     Dashboard
                                  </Link>
-                                 <Link to="/admin/productlist" className="block px-4 py-2 hover:bg-gray-100">
+                                 <Link to="/admin/productlist" className="block px-4 py-2 hover:font-bold">
                                     Produse
                                  </Link>
-                                 <Link to="/admin/categorylist" className="block px-4 py-2 hover:bg-gray-100">
+                                 <Link to="/admin/categorylist" className="block px-4 py-2 hover:font-bold">
                                     Categorii
                                  </Link>
-                                 <Link to="/admin/orderlist" className="block px-4 py-2 hover:bg-gray-100">
+                                 <Link to="/admin/orderlist" className="block px-4 py-2 hover:font-bold">
                                     Comenzi
                                  </Link>
-                                 <Link to="/admin/userlist" className="block px-4 py-2 hover:bg-gray-100">
+                                 <Link to="/admin/userlist" className="block px-4 py-2 hover:font-bold">
                                     Utilizatori
                                  </Link>
                               </>
                            )}
-                           <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
+                           <Link to="/profile" className="block px-4 py-2 hover:font-bold">
                               Profil
                            </Link>
-                           <button onClick={logoutHandler} className="w-full p-2 text-left hover:bg-gray-100 font-semibold">
+                           <button onClick={logoutHandler} className="w-full text-center p-2 hover:font-bold delogare-button">
                               Delogare
                            </button>
                         </div>
