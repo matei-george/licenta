@@ -25,7 +25,7 @@ const HeartIcon = ({ product, className }) => {
    };
 
    // Heart icon color
-   const heartColor = isFavorite ? "#ff0080" : "#fff"; // Pink when favorite, white when not
+   const heartColor = isFavorite ? "#466990" : "#000"; // Pink when favorite, white when not
 
    return (
       <div className={className} onClick={toggleFavorites} style={{ cursor: "pointer" }}>

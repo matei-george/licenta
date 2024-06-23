@@ -19,7 +19,8 @@
 }
 
 .navbar__icons {
-   height: 30px;
+   height: 35px;
+   margin-right: 2px;
 }
 .dropdown-content {
    position: absolute;
@@ -30,14 +31,12 @@
    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Dropdown visibility on click */
 .navbar .relative .dropdown-content {
    display: block;
    opacity: 1;
    transform: translateX(0);
 }
 
-/* Ensure dropdown is slightly to the right */
 .dropdown-content {
    right: -10px;
 }

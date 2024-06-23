@@ -9,7 +9,7 @@ import instagram from "../Assets/Icons/icons8-instagram-50.png";
 import tiktok from "../Assets/Icons/icons8-tiktok-50.png";
 import youtube from "../Assets/Icons/icons8-youtube-50.png";
 
-export const Footer = () => {
+const Footer = () => {
    return (
       <footer className="footer p-8 pb-4 pt-4 mb-1">
          <div className="container mx-auto grid grid-cols-4 gap-4">
@@ -95,3 +95,5 @@ export const Footer = () => {
       </footer>
    );
 };
+
+export default Footer;

@@ -2,14 +2,13 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
-
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 // Stiluri
 import "../../shared.css";
 import "./Despre.css";
 
-export const Despre = () => {
+const Despre = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -55,3 +54,4 @@ export const Despre = () => {
       </main>
    );
 };
+export default Despre;

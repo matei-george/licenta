@@ -67,7 +67,7 @@ const AdminMenu = () => {
                            color: isActive ? "greenyellow" : "white",
                         })}
                      >
-                        Toate Produsele
+                        Gestionează produsele
                      </NavLink>
                   </li>
                   <li>
@@ -78,7 +78,7 @@ const AdminMenu = () => {
                            color: isActive ? "greenyellow" : "white",
                         })}
                      >
-                        Gestionează Utilizatorii
+                        Gestionează utilizatorii
                      </NavLink>
                   </li>
                   <li>
@@ -89,7 +89,7 @@ const AdminMenu = () => {
                            color: isActive ? "greenyellow" : "white",
                         })}
                      >
-                        Manage Orders
+                        Gestionează comenzile
                      </NavLink>
                   </li>
                </ul>

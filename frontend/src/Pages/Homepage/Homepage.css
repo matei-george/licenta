@@ -1,11 +1,48 @@
-main {
-   background-color: var(--page-bg);
-}
-.work-in-progress {
-   transform: scale(1);
+html,
+body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
 }
 
-/*! Hotfix temporar pentru ca pagina sa ocupe tot viewportul */
+main {
+   background-color: var(--page-bg);
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+
 .homepage {
-   height: 100vh;
+   flex: 1;
+}
+
+.website-title {
+   text-align: center;
+   font-size: 64px;
+   font-family: var(--crimson);
+}
+
+.banner-container,
+.header-container {
+   display: flex;
+   flex-flow: column nowrap;
+   align-items: center;
+}
+
+.banner-text {
+   font-size: 24px;
+   text-align: center;
+   margin-bottom: 1rem;
+}
+
+.banner-image {
+   width: 45%;
+}
+
+.container {
+   flex: 1;
+}
+
+.work-in-progress {
+   transform: scale(1);
 }

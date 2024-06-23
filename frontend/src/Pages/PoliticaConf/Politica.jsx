@@ -2,14 +2,14 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 // Stiluri
 import "../../shared.css";
 import "./Politica.css";
 
-export const Politica = () => {
+const Politica = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -111,3 +111,5 @@ export const Politica = () => {
       </main>
    );
 };
+
+export default Politica;

@@ -2,8 +2,8 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 // Stiluri
 import "../../shared.css";
@@ -14,7 +14,7 @@ import email from "../../Components/Assets/Icons/icons8-email-50.png";
 import phone from "../../Components/Assets/Icons/icons8-phone-50.png";
 import fax from "../../Components/Assets/Icons/icons8-fax-50.png";
 
-export const Contact = () => {
+const Contact = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -50,3 +50,5 @@ export const Contact = () => {
       </main>
    );
 };
+
+export default Contact;

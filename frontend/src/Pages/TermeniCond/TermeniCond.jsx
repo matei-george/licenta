@@ -2,14 +2,14 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 // Stiluri
 import "../../shared.css";
 import "./TermeniCond.css";
 
-export const TermeniCond = () => {
+const TermeniCond = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -88,3 +88,5 @@ export const TermeniCond = () => {
       </main>
    );
 };
+
+export default TermeniCond;

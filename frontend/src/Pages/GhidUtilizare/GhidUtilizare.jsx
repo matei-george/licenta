@@ -2,8 +2,8 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 // Stiluri
 import "../../shared.css";
@@ -13,7 +13,7 @@ import "./GhidUtilizare.css";
 import user from "../../Components/Assets/Icons/icons8-user-50.png";
 import cart from "../../Components/Assets/Icons/icons8-shopping-cart-50.png";
 
-export const GhidUtilizare = () => {
+const GhidUtilizare = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -89,3 +89,5 @@ export const GhidUtilizare = () => {
       </main>
    );
 };
+
+export default GhidUtilizare;

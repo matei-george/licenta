@@ -2,8 +2,8 @@
 import React from "react";
 
 // Componente
-import { Navbar } from "../../Components/Navbar/Navbar";
-import { Footer } from "../../Components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 
 // Stiluri
 import "../../shared.css";
@@ -12,7 +12,7 @@ import "./Copyright.css";
 // TODO
 // [] > Revizie politica
 
-export const Copyright = () => {
+const Copyright = () => {
    return (
       <main className="flex flex-col">
          <Navbar />
@@ -106,3 +106,5 @@ export const Copyright = () => {
       </main>
    );
 };
+
+export default Copyright;

@@ -41,14 +41,14 @@ const ProductList = () => {
          const { data } = await createProduct(productData);
 
          if (data.error) {
-            alert("Failed to create product.");
+            alert("Nu a fost posibilă crearea produsului.");
          } else {
-            alert(`${data.name} is created`);
+            alert(`${data.name} a fost creat.`);
             navigate("/");
          }
       } catch (error) {
          console.error(error);
-         alert("Product create failed. Try Again.");
+         alert("Nu a fost posibilă crearea produsului.");
       }
    };
 
@@ -62,7 +62,7 @@ const ProductList = () => {
          setImage(res.image);
          setImageUrl(res.image);
       } catch (error) {
-         alert(error?.data?.message || "Error uploading image.");
+         alert(error?.data?.message || "Eroare la încărcarea imaginii.");
       }
    };
 
@@ -76,7 +76,7 @@ const ProductList = () => {
          setZipFile(res.file);
          setZipUrl(res.file);
       } catch (error) {
-         alert(error?.data?.message || "Error uploading ZIP file.");
+         alert(error?.data?.message || "Eroare la încărcarea fișierului ZIP.");
       }
    };
 
@@ -85,7 +85,7 @@ const ProductList = () => {
          <div className="flex flex-col md:flex-row">
             <AdminMenu />
             <div className="md:w-3/4 p-3">
-               <div className="h-12">Create Product</div>
+               <div className="h-12">Crează produs</div>
 
                {imageUrl && (
                   <div className="text-center">
@@ -95,7 +95,7 @@ const ProductList = () => {
 
                <div className="mb-3">
                   <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                     {image ? image.name : "Upload Image"}
+                     {image ? image.name : "Încarcă imaginea"}
 
                      <input type="file" name="image" accept="image/*" onChange={uploadImageHandler} className={!image ? "hidden" : "text-white"} />
                   </label>
@@ -109,7 +109,7 @@ const ProductList = () => {
 
                <div className="mb-3">
                   <label className="border text-white px-4 block w-full text-center rounded-lg cursor-pointer font-bold py-11">
-                     {zipFile ? zipFile.name : "Upload ZIP File"}
+                     {zipFile ? zipFile.name : "Încarcă fișierul ZIP"}
 
                      <input type="file" name="zipfile" accept=".zip" onChange={uploadZipHandler} className={!zipFile ? "hidden" : "text-white"} />
                   </label>
@@ -118,11 +118,11 @@ const ProductList = () => {
                <div className="p-3">
                   <div className="flex flex-wrap">
                      <div className="one">
-                        <label htmlFor="name">Name</label> <br />
+                        <label htmlFor="name">Nume</label> <br />
                         <input type="text" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" value={name} onChange={(e) => setName(e.target.value)} />
                      </div>
                      <div className="two ml-10 ">
-                        <label htmlFor="price">Price</label> <br />
+                        <label htmlFor="price">Preț</label> <br />
                         <input
                            type="number"
                            className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -133,7 +133,7 @@ const ProductList = () => {
                   </div>
                   <div className="flex flex-wrap">
                      <div className="one">
-                        <label htmlFor="quantity">Quantity</label> <br />
+                        <label htmlFor="quantity">Cantitate</label> <br />
                         <input
                            type="number"
                            className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -148,7 +148,7 @@ const ProductList = () => {
                   </div>
 
                   <label htmlFor="description" className="my-5">
-                     Description
+                     Descriere
                   </label>
                   <textarea
                      id="description"
@@ -159,7 +159,7 @@ const ProductList = () => {
 
                   <div className="flex justify-between">
                      <div>
-                        <label htmlFor="stock">Count In Stock</label> <br />
+                        <label htmlFor="stock">Număr pe stoc</label> <br />
                         <input
                            type="number"
                            className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white"
@@ -169,9 +169,9 @@ const ProductList = () => {
                      </div>
 
                      <div>
-                        <label htmlFor="category">Category</label> <br />
+                        <label htmlFor="category">Categorie</label> <br />
                         <select id="category" className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white" onChange={(e) => setCategory(e.target.value)}>
-                           <option value="">Select Category</option>
+                           <option value="">Selectează categoria</option>
                            {categories?.map((c) => (
                               <option key={c._id} value={c._id}>
                                  {c.name}
@@ -182,7 +182,7 @@ const ProductList = () => {
                   </div>
 
                   <button onClick={handleSubmit} className="py-4 px-10 mt-5 rounded-lg text-lg font-bold bg-pink-600">
-                     Submit
+                     Crează
                   </button>
                </div>
             </div>

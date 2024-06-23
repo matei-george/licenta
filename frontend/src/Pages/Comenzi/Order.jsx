@@ -28,7 +28,7 @@ const Order = () => {
                type: "resetOptions",
                value: {
                   "client-id": paypal.clientId,
-                  currency: "USD",
+                  currency: "EUR",
                },
             });
             paypalDispatch({ type: "setLoadingStatus", value: "pending" });
@@ -59,7 +59,7 @@ const Order = () => {
          link.click();
          link.remove();
       } catch (error) {
-         console.error("Failed to download ZIP file:", error);
+         console.error("Fișierul ZIP nu a putut fi descărcat:", error);
       }
    };
 
@@ -68,7 +68,7 @@ const Order = () => {
          try {
             await payOrder({ orderId, details });
             refetch();
-            alert("Order is paid");
+            alert("Comandă achitată cu succes.");
          } catch (error) {
             alert(error?.data?.message || error.message);
          }
@@ -103,18 +103,18 @@ const Order = () => {
          <div className="md:w-2/3 pr-4">
             <div className="border gray-300 mt-5 pb-4 mb-5">
                {order.orderItems.length === 0 ? (
-                  <Message>Order is empty</Message>
+                  <Message>Comanda nu are produse</Message>
                ) : (
                   <div className="overflow-x-auto">
                      <table className="w-[80%]">
                         <thead className="border-b-2">
                            <tr>
-                              <th className="p-2">Image</th>
-                              <th className="p-2">Product</th>
-                              <th className="p-2 text-center">Quantity</th>
-                              <th className="p-2">Unit Price</th>
+                              <th className="p-2">Imagine</th>
+                              <th className="p-2">Nume Produs</th>
+                              <th className="p-2 text-center">Cantitate</th>
+                              <th className="p-2">Prețul unității</th>
                               <th className="p-2">Total</th>
-                              <th className="p-2">Action</th>
+                              <th className="p-2">Descărcabil</th>
                            </tr>
                         </thead>
 
@@ -129,11 +129,11 @@ const Order = () => {
                                  </td>
                                  <td className="p-2 text-center">{item.qty}</td>
                                  <td className="p-2 text-center">{item.price}</td>
-                                 <td className="p-2 text-center">LEI {(item.qty * item.price).toFixed(2)}</td>
+                                 <td className="p-2 text-center">&euro;{(item.qty * item.price).toFixed(2)}</td>
                                  <td className="p-2 text-center">
                                     {order.isPaid && item.zipfile && (
                                        <button onClick={() => handleDownload(item.zipfile)} className="bg-blue-500 text-white py-2 px-4">
-                                          Download ZIP
+                                          Descarcă ZIP
                                        </button>
                                     )}
                                  </td>
@@ -148,13 +148,13 @@ const Order = () => {
 
          <div className="md:w-1/3">
             <div className="mt-5 border-gray-300 pb-4 mb-4">
-               <h2 className="text-xl font-bold mb-2">Shipping</h2>
+               <h2 className="text-xl font-bold mb-2">Date facturare</h2>
                <p className="mb-4 mt-4">
-                  <strong className="text-pink-500">Order:</strong> {order._id}
+                  <strong className="text-pink-500">Comanda:</strong> {order._id}
                </p>
 
                <p className="mb-4">
-                  <strong className="text-pink-500">Name:</strong> {order.user.username}
+                  <strong className="text-pink-500">Nume:</strong> {order.user.username}
                </p>
 
                <p className="mb-4">
@@ -162,38 +162,29 @@ const Order = () => {
                </p>
 
                <p className="mb-4">
-                  <strong className="text-pink-500">Address:</strong> {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postalCode},{" "}
+                  <strong className="text-pink-500">Adresă:</strong> {order.shippingAddress.address}, {order.shippingAddress.city} {order.shippingAddress.postalCode},{" "}
                   {order.shippingAddress.country}
                </p>
 
                <p className="mb-4">
-                  <strong className="text-pink-500">Method:</strong> {order.paymentMethod}
+                  <strong className="text-pink-500">Metodă de plată:</strong> {order.paymentMethod}
                </p>
 
-               {order.isPaid ? <Message variant="success">Paid on {order.paidAt}</Message> : <Message variant="danger">Not paid</Message>}
+               {order.isPaid ? <Message variant="success">Achitat pe {order.paidAt}</Message> : <Message variant="danger">Neachitat</Message>}
             </div>
 
-            <h2 className="text-xl font-bold mb-2 mt-[3rem]">Order Summary</h2>
+            <h2 className="text-xl font-bold mb-2 mt-[3rem]">Sumarul comenzii</h2>
             <div className="flex justify-between mb-2">
-               <span>Items</span>
-               <span>$ {order.itemsPrice}</span>
+               <span>Valoare produse</span>
+               <span>&euro;{order.itemsPrice}</span>
             </div>
-            <div className="flex justify-between mb-2">
-               <span>Shipping</span>
-               <span>$ {order.shippingPrice}</span>
-            </div>
-            <div className="flex justify-between mb-2">
-               <span>Tax</span>
-               <span>$ {order.taxPrice}</span>
+            <div className="flex justify-between items-center mb-2">
+               <span>Taxe</span>
+               <span>&euro;{order.taxPrice}</span>
             </div>
             <div className="flex justify-between items-center mb-2">
                <span>Total</span>
-               <span>$ {order.totalPrice}</span>
-               {order.isPaid && order.orderItems.some((item) => item.zipfile) && (
-                  <button onClick={() => handleDownload(order.orderItems.find((item) => item.zipfile).zipfile)} className="bg-blue-500 text-white py-2 px-4 ml-4">
-                     Download ZIP
-                  </button>
-               )}
+               <span>&euro;{order.totalPrice}</span>
             </div>
 
             {!order.isPaid && (
@@ -208,15 +199,6 @@ const Order = () => {
                         </div>
                      </div>
                   )}
-               </div>
-            )}
-
-            {loadingDeliver && <Loader />}
-            {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
-               <div>
-                  <button type="button" className="bg-pink-500 text-white w-full py-2" onClick={deliverHandler}>
-                     Mark As Delivered
-                  </button>
                </div>
             )}
          </div>

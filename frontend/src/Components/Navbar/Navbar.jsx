@@ -1,16 +1,21 @@
 import React, { useState } from "react";
-import "./Navbar.css";
-import "../../shared.css";
+
+// Asseturi
 import logo from "../Assets/Images/WebHub_Logo_t.png";
 import userIcon from "../Assets/Icons/icons8-user-50.png";
 import { FaShoppingCart, FaHeart } from "react-icons/fa"; // Import FaShoppingCart and FaHeart icons
+
+// Componente
 import { useSelector, useDispatch } from "react-redux";
 import { useLogoutMutation } from "../../redux/api/usersApiSlice";
 import { logout } from "../../redux/features/auth/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import FavoritesCount from "../FavoritesCount/FavoritesCount";
-import { selectCartItemsCount } from "../../redux/features/cart/cartSlice"; // Import selector for cart items count
-import CartCount from "../CartCount/CartCount"; // Import CartCount component
+import { selectCartItemsCount } from "../../redux/features/cart/cartSlice";
+import CartCount from "../CartCount/CartCount.jsx";
+
+import "./Navbar.css";
+import "../../shared.css";
 
 const Navbar = () => {
    const { userInfo } = useSelector((state) => state.auth);
@@ -19,7 +24,7 @@ const Navbar = () => {
    const [logoutApiCall] = useLogoutMutation();
    const [dropdownVisible, setDropdownVisible] = useState(false);
 
-   const cartItemsCount = useSelector(selectCartItemsCount); // Selector to get cart items count
+   const cartItemsCount = useSelector(selectCartItemsCount);
 
    const logoutHandler = async () => {
       try {
@@ -54,11 +59,6 @@ const Navbar = () => {
                   </Link>
                </li>
                <li className="mr-6">
-                  <Link to="/categorii" className="nav-link font-semibold text-lg">
-                     Categorii
-                  </Link>
-               </li>
-               <li className="mr-6">
                   <Link to="/despre" className="nav-link font-semibold text-lg">
                      Despre
                   </Link>
@@ -69,7 +69,7 @@ const Navbar = () => {
                   </Link>
                </li>
             </ul>
-            <div className="relative">
+            <div className="relative flex items-center gap-5">
                {userInfo ? (
                   <div className="flex items-center gap-5 relative">
                      <img src={userIcon} alt="user-icon" className="navbar__icons cursor-pointer" onClick={toggleDropdown} />
@@ -110,15 +110,13 @@ const Navbar = () => {
                   </Link>
                )}
             </div>
-            <div className="flex items-center gap-5 mr-12">
-               {/* Integrate FavoritesCount component here */}
+            <div className="flex items-center gap-5 mr-12 ">
                <FavoritesCount />
                <Link to="/favourite" className="navbar__icons">
-                  <FaHeart className="text-white text-3xl relative" style={{ stroke: "black", strokeWidth: "4px" }} /> {/* Use FaHeart icon with black outline */}
+                  <FaHeart className="text-white text-3xl relative mt-1 ml-2" style={{ stroke: "black", strokeWidth: "25px" }} /> {/* Use FaHeart icon with black outline */}
                </Link>
-               {/* Make Cart icon clickable and navigate to /cart */}
                <Link to="/cart" className="text-white flex items-center">
-                  <FaShoppingCart className="text-pink-500 text-2xl" />
+                  <FaShoppingCart className="text-white text-3xl" style={{ stroke: "black", strokeWidth: "25px" }} />
                   {cartItemsCount > 0 && <span className="cart-count absolute top-4 right-0 bg-white text-black rounded-full px-1 py-0 text-xs">{cartItemsCount}</span>}
                </Link>
             </div>

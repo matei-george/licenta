@@ -42,23 +42,23 @@ const ProductCarousel = () => {
                                  <FaStore className="mr-2 text-white" /> Brand: {brand}
                               </h1>
                               <h1 className="flex items-center mb-6">
-                                 <FaClock className="mr-2 text-white" /> Added: {moment(createdAt).fromNow()}
+                                 <FaClock className="mr-2 text-white" /> Adăugat: {moment(createdAt).fromNow()}
                               </h1>
                               <h1 className="flex items-center mb-6">
-                                 <FaStar className="mr-2 text-white" /> Reviews:
+                                 <FaStar className="mr-2 text-white" /> Recenzii:
                                  {numReviews}
                               </h1>
                            </div>
 
                            <div className="two">
                               <h1 className="flex items-center mb-6">
-                                 <FaStar className="mr-2 text-white" /> Ratings: {Math.round(rating)}
+                                 <FaStar className="mr-2 text-white" /> Rating: {Math.round(rating)}
                               </h1>
                               <h1 className="flex items-center mb-6">
-                                 <FaShoppingCart className="mr-2 text-white" /> Quantity: {quantity}
+                                 <FaShoppingCart className="mr-2 text-white" /> Cantitate: {quantity}
                               </h1>
                               <h1 className="flex items-center mb-6">
-                                 <FaBox className="mr-2 text-white" /> In Stock: {countInStock}
+                                 <FaBox className="mr-2 text-white" /> Pe stoc: {countInStock}
                               </h1>
                            </div>
                         </div>

@@ -27,11 +27,11 @@ const CategoryList = () => {
             alert(result.error);
          } else {
             setName("");
-            alert(`${result.name} is created.`);
+            alert(`${result.name} a fost creată.`);
          }
       } catch (error) {
          console.error(error);
-         alert("Creating category failed, try again.");
+         alert("Nu a fost posibilă crearea categoriei.");
       }
    };
 
@@ -39,7 +39,7 @@ const CategoryList = () => {
       e.preventDefault();
 
       if (!updatingName) {
-         alert("Category name is required");
+         alert("Numele categoriei este necesar!");
          return;
       }
 
@@ -54,13 +54,13 @@ const CategoryList = () => {
          if (result.error) {
             alert(result.error);
          } else {
-            alert(`${result.name} is updated`);
+            alert(`${result.name} a fost actualizată.`);
             setSelectedCategory(null);
             setUpdatingName("");
          }
       } catch (error) {
          console.error(error);
-         alert("Updating category failed, try again.");
+         alert("Nu a fost posibilă actualizarea categoriei.");
       }
    };
 
@@ -71,12 +71,12 @@ const CategoryList = () => {
          if (result.error) {
             alert(result.error);
          } else {
-            alert(`${result.name} is deleted.`);
+            alert(`${result.name} a fost ștearsă.`);
             setSelectedCategory(null);
          }
       } catch (error) {
          console.error(error);
-         alert("Deleting category failed, try again.");
+         alert("Nu a fost posibilă ștergerea categoriei.");
       }
    };
 
@@ -84,7 +84,7 @@ const CategoryList = () => {
       <div className="ml-[10rem] flex flex-col md:flex-row">
          <AdminMenu />
          <div className="md:w-3/4 p-3">
-            <div className="h-12">Manage Categories</div>
+            <div className="h-12">Gestionează categoriile</div>
             <CategoryForm value={name} setValue={setName} handleSubmit={handleCreateCategory} />
             <br />
             <hr />
@@ -110,7 +110,7 @@ const CategoryList = () => {
                   value={updatingName}
                   setValue={(value) => setUpdatingName(value)}
                   handleSubmit={handleUpdateCategory}
-                  buttonText="Update"
+                  buttonText="Actualizează"
                   handleDelete={handleDeleteCategory}
                />
             )}

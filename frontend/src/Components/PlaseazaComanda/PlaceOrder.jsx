@@ -70,10 +70,10 @@ const PlaceOrder = () => {
                   <table className="w-full border-collapse">
                      <thead>
                         <tr>
-                           <td className="px-1 py-2 text-left align-top border-b">Image</td>
-                           <td className="px-1 py-2 text-left border-b">Product</td>
-                           <td className="px-1 py-2 text-left border-b">Quantity</td>
-                           <td className="px-1 py-2 text-left border-b">Price</td>
+                           <td className="px-1 py-2 text-left align-top border-b">Imagine</td>
+                           <td className="px-1 py-2 text-left border-b">Nume</td>
+                           <td className="px-1 py-2 text-left border-b">Cantitate</td>
+                           <td className="px-1 py-2 text-left border-b">Pret</td>
                            <td className="px-1 py-2 text-left border-b">Total</td>
                         </tr>
                      </thead>

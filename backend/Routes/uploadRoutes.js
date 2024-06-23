@@ -31,7 +31,7 @@ const imageFileFilter = (req, file, cb) => {
 
 const zipFileFilter = (req, file, cb) => {
    const filetypes = /zip/;
-   const mimetypes = /application\/zip/;
+   const mimetypes = /zip/;
 
    const extname = path.extname(file.originalname).toLowerCase();
    const mimetype = file.mimetype;
