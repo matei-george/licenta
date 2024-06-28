@@ -68,7 +68,7 @@ const Shop = () => {
          <div className="container mx-auto my-8 px-12">
             <div className="flex md:flex-row">
                <div className="bg-white p-3 mt-2 mb-2 shadow-lg rounded-lg filter-container">
-                  <h2 className="h4 text-center py-2  text-white rounded mb-2 shop-filter-label">Filtrează după categorii</h2>
+                  <h2 className="h4 text-center py-2 text-white rounded mb-2 shop-filter-label">Filtrează după categorii</h2>
 
                   <div className="p-5 w-[15rem]">
                      {categories?.map((c) => (
@@ -128,14 +128,14 @@ const Shop = () => {
                   </div>
                </div>
 
-               <div className="p-3">
+               <div className="p-3 flex-1">
                   <h2 className="h4 mb-2 text-black px-10 font-semibold">Se afișează {products?.length} produse</h2>
-                  <div className="flex flex-wrap">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                      {products.length === 0 ? (
                         <Loader />
                      ) : (
                         products?.map((p) => (
-                           <div className="p-3" key={p._id}>
+                           <div key={p._id}>
                               <ProductCard p={p} />
                            </div>
                         ))

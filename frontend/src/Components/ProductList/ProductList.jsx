@@ -12,12 +12,12 @@ const ProductList = () => {
    const [description, setDescription] = useState("");
    const [price, setPrice] = useState("");
    const [category, setCategory] = useState("");
-   const [quantity, setQuantity] = useState("");
    const [brand, setBrand] = useState("");
    const [stock, setStock] = useState(0);
    const [imageUrl, setImageUrl] = useState(null);
    const [zipFile, setZipFile] = useState("");
    const [zipUrl, setZipUrl] = useState(null);
+   const [quantity, setQuantity] = useState("");
    const navigate = useNavigate();
 
    const [uploadProductImage] = useUploadProductImageMutation();
@@ -35,8 +35,8 @@ const ProductList = () => {
          productData.append("description", description);
          productData.append("price", price);
          productData.append("category", category);
-         productData.append("quantity", quantity);
          productData.append("brand", brand);
+         productData.append("quantity", 9999);
          productData.append("countInStock", stock);
          productData.append("zipfile", zipFile);
 
@@ -144,17 +144,6 @@ const ProductList = () => {
                      </div>
                      <div className="flex flex-wrap mb-6">
                         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                           <label htmlFor="quantity" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                              Cantitate
-                           </label>
-                           <input
-                              type="number"
-                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                              value={quantity}
-                              onChange={(e) => setQuantity(e.target.value)}
-                           />
-                        </div>
-                        <div className="w-full md:w-1/2 px-3">
                            <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                               Brand
                            </label>
@@ -163,6 +152,17 @@ const ProductList = () => {
                               className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                               value={brand}
                               onChange={(e) => setBrand(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Număr pe stoc
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={stock}
+                              onChange={(e) => setStock(e.target.value)}
                            />
                         </div>
                      </div>
@@ -178,18 +178,6 @@ const ProductList = () => {
                      ></textarea>
 
                      <div className="flex flex-wrap mb-6">
-                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                              Număr pe stoc
-                           </label>
-                           <input
-                              type="number"
-                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                              value={stock}
-                              onChange={(e) => setStock(e.target.value)}
-                           />
-                        </div>
-
                         <div className="w-full md:w-1/2 px-3">
                            <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                               Categorie

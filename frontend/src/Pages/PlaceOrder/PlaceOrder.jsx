@@ -46,15 +46,14 @@ const PlaceOrder = () => {
 
          <div className="container mx-auto mt-8">
             {cart.cartItems.length === 0 ? (
-               <Message>Your cart is empty</Message>
+               <Message>Coșul este gol</Message>
             ) : (
                <div className="overflow-x-auto">
                   <table className="w-full border-collapse">
                      <thead>
                         <tr>
-                           <td className="px-1 py-2 text-left align-top">Image</td>
+                           <td className="px-1 py-2 text-left align-top">Imagine</td>
                            <td className="px-1 py-2 text-left">Produs</td>
-                           <td className="px-1 py-2 text-left">Cantitate</td>
                            <td className="px-1 py-2 text-left">Preț</td>
                            <td className="px-1 py-2 text-left">Total</td>
                         </tr>
@@ -70,9 +69,8 @@ const PlaceOrder = () => {
                               <td className="p-2">
                                  <Link to={`/product/${item.product}`}>{item.name}</Link>
                               </td>
-                              <td className="p-2">{item.qty}</td>
                               <td className="p-2">{item.price.toFixed(2)}</td>
-                              <td className="p-2">$ {(item.qty * item.price).toFixed(2)}</td>
+                              <td className="p-2">LEI {(item.qty * item.price).toFixed(2)}</td>
                            </tr>
                         ))}
                      </tbody>
@@ -85,7 +83,7 @@ const PlaceOrder = () => {
                <div className="flex justify-between flex-wrap p-8 bg-[#181818]">
                   <ul className="text-lg">
                      <li>
-                        <span className="font-semibold mb-4">Produse:</span> ${cart.itemsPrice}
+                        <span className="font-semibold mb-4">Produse:</span> LEI{cart.itemsPrice}
                      </li>
                      <li>
                         <span className="font-semibold mb-4">Taxe:</span> LEI {cart.taxPrice}

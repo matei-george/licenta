@@ -55,11 +55,11 @@ const AdminProductUpdate = () => {
 
       try {
          const res = await uploadProductImage(formData).unwrap();
-         alert("Image uploaded successfully");
+         alert("Imagine încărcată cu succes!");
          setImage(res.image); // Update image state with the URL returned from the server if needed
       } catch (err) {
          console.error("Image upload failed:", err);
-         alert("Image upload failed. Try again.");
+         alert("Încărcarea imaginii a eșuat, încearcă din nou.");
       }
    };
 
@@ -72,12 +72,12 @@ const AdminProductUpdate = () => {
 
       try {
          const res = await uploadProductZip(formData).unwrap();
-         alert("ZIP file uploaded successfully");
+         alert("Fișier ZIP încărcat cu succes!");
          setZipFile(res.file); // Update zipFile state with the URL returned from the server if needed
          setZipUrl(res.file);
       } catch (err) {
          console.error("ZIP file upload failed:", err);
-         alert("ZIP file upload failed. Try again.");
+         alert("Încărcarea fișierului ZIP a eșuat, încearcă din nou.");
       }
    };
 
@@ -89,7 +89,7 @@ const AdminProductUpdate = () => {
       formData.append("description", description);
       formData.append("price", price);
       formData.append("category", category);
-      formData.append("quantity", quantity);
+      formData.append("quantity", 9999);
       formData.append("brand", brand);
       formData.append("countInStock", stock);
 
@@ -109,26 +109,26 @@ const AdminProductUpdate = () => {
          if (data?.error) {
             alert(data.error);
          } else {
-            alert("Product successfully updated");
+            alert("Produs actualizat cu succes!");
             navigate("/admin/allproductslist");
          }
       } catch (err) {
          console.error("Product update failed:", err);
-         alert("Product update failed. Try again.");
+         alert("Actualizarea a eșuat, încearcă din nou.");
       }
    };
 
    const handleDelete = async () => {
       try {
-         let answer = window.confirm("Are you sure you want to delete this product?");
+         let answer = window.confirm("Ești sigur că vrei să ștergi acest produs?");
          if (!answer) return;
 
          const { data } = await deleteProduct(params._id);
-         alert(`"${data.name}" is deleted`);
+         alert(`"${data.name}" a fost șters`);
          navigate("/admin/allproductslist");
       } catch (err) {
-         console.error("Delete failed:", err);
-         alert("Delete failed. Try again.");
+         console.error("Ștergere eșuată:", err);
+         alert("Ștergere eșuată, încearcă din nou.");
       }
    };
 
@@ -192,17 +192,6 @@ const AdminProductUpdate = () => {
                         </div>
                      </div>
                      <div className="flex flex-wrap mb-6">
-                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                           <label htmlFor="quantity" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                              Cantitate
-                           </label>
-                           <input
-                              type="number"
-                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                              value={quantity}
-                              onChange={(e) => setQuantity(e.target.value)}
-                           />
-                        </div>
                         <div className="w-full md:w-1/2 px-3">
                            <label htmlFor="brand" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                               Brand
@@ -212,6 +201,17 @@ const AdminProductUpdate = () => {
                               className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                               value={brand}
                               onChange={(e) => setBrand(e.target.value)}
+                           />
+                        </div>
+                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                              Număr pe stoc
+                           </label>
+                           <input
+                              type="number"
+                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                              value={stock}
+                              onChange={(e) => setStock(e.target.value)}
                            />
                         </div>
                      </div>
@@ -227,18 +227,6 @@ const AdminProductUpdate = () => {
                      ></textarea>
 
                      <div className="flex flex-wrap mb-6">
-                        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                           <label htmlFor="stock" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                              Număr pe stoc
-                           </label>
-                           <input
-                              type="number"
-                              className="block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                              value={stock}
-                              onChange={(e) => setStock(e.target.value)}
-                           />
-                        </div>
-
                         <div className="w-full md:w-1/2 px-3">
                            <label htmlFor="category" className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                               Categorie

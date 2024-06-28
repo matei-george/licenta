@@ -25,7 +25,7 @@ router.route("/new").get(fetchNewProducts);
 router.route("/:id").put(authenticate, authorizeAdmin, formidable(), updateProductDetails);
 router.route("/:id").delete(authenticate, authorizeAdmin, formidable(), deleteProduct);
 router.route("/:id").get(fetchByProductId);
-router.route("/:id/reviews").post(authenticate, authorizeAdmin, checkId, addProductReview);
+router.route("/:id/reviews").post(authenticate, checkId, addProductReview);
 router.route("/filtered-products").post(filterProducts);
 
 router.get("/download/:filename", (req, res) => {

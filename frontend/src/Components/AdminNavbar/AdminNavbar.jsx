@@ -39,7 +39,7 @@ const AdminNavbar = () => {
          <div className="container mx-auto flex justify-between items-center">
             <div className="flex items-center">
                <img src={logo} alt="Logo" className="navbar__logo mr-14" />
-               <span className="font-bold text-3xl navbar__title">Webhub</span>
+               <span className="font-bold text-3xl navbar__title">WebHub</span>
                <span className="font-semibold text-xs adm__subtitle">ADMIN PANEL</span>
             </div>
             <ul className="flex flex-1 justify-center gap-4">

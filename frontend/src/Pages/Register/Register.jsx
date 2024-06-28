@@ -41,7 +41,7 @@ const Register = () => {
          <div className="max-w-lg mx-auto p-8 pb-4 login-register-card rounded-lg overflow-hidden shadow-2xl">
             <div className="px-6 py-4">
                <p className="text-left text-lg mb-4 font-bold register-text">Înregistrare</p>
-               <h2 className="text-center text-3xl mb-8 title">Bine ai venit pe Webhub!</h2>
+               <h2 className="text-center text-3xl mb-8 title">Bine ai venit pe WebHub!</h2>
                <form onSubmit={handleSubmit}>
                   <div className="mb-4">
                      <label htmlFor="username" className="block text-sm font-semibold mb-2">

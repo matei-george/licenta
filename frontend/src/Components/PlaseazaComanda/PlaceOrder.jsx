@@ -74,7 +74,6 @@ const PlaceOrder = () => {
                         <tr>
                            <td className="px-1 py-2 text-left align-top border-b">Imagine</td>
                            <td className="px-1 py-2 text-left border-b">Nume</td>
-                           <td className="px-1 py-2 text-left border-b">Cantitate</td>
                            <td className="px-1 py-2 text-left border-b">Pret</td>
                            <td className="px-1 py-2 text-left border-b">Total</td>
                         </tr>
@@ -92,9 +91,8 @@ const PlaceOrder = () => {
                                     {item.name}
                                  </Link>
                               </td>
-                              <td className="p-2">{item.qty}</td>
-                              <td className="p-2">${item.price.toFixed(2)}</td>
-                              <td className="p-2">${(item.qty * item.price).toFixed(2)}</td>
+                              <td className="p-2">LEI {item.price.toFixed(2)}</td>
+                              <td className="p-2">LEI {(item.qty * item.price).toFixed(2)}</td>
                            </tr>
                         ))}
                      </tbody>

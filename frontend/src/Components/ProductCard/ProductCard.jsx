@@ -13,20 +13,20 @@ const ProductCard = ({ p }) => {
    };
 
    return (
-      <div className="max-w-lg relative bg-white rounded-lg mx-4 md:mx-6 lg:mx-8 shadow-xl">
+      <div className="max-w-xs relative bg-white rounded-lg mx-2 md:mx-4 lg:mx-6 shadow-xl">
          <section className="relative">
             <Link to={`/product/${p._id}`}>
-               <span className="absolute top-2 right-1 bg-[#466990] text-white text-sm font-medium mr-2 px-2 py-0.5 rounded-full dark:bg-[#1c4563] dark:text-white">
+               <span className="absolute top-2 right-1 bg-[#466990] text-white text-xs font-medium px-2 py-0.5 rounded-full dark:bg-[#1c4563] dark:text-white">
                   {p?.brand}
                </span>
-               <img className="cursor-pointer w-full" src={p.image} alt={p.name} style={{ height: "250px", objectFit: "cover" }} />
+               <img className="cursor-pointer w-full" src={p.image} alt={p.name} style={{ height: "150px", objectFit: "cover" }} />
             </Link>
          </section>
 
-         <div className="p-6">
+         <div className="p-3">
             <div className="flex justify-between items-center">
-               <h5 className="mb-2 text-xl text-black">{p?.name}</h5>
-               <p className="text-black font-semibold text-md">
+               <h5 className="mb-2 text-lg text-black">{p?.name}</h5>
+               <p className="text-black font-semibold text-sm">
                   {p?.price?.toLocaleString("en-US", {
                      style: "currency",
                      currency: "LEI",
@@ -34,7 +34,7 @@ const ProductCard = ({ p }) => {
                </p>
             </div>
 
-            <p className="mb-3 font-normal text-gray-600 text-sm">{p?.description?.substring(0, 80)} ...</p>
+            <p className="mb-3 font-normal text-gray-600 text-xs">{p?.description?.substring(0, 80)} ...</p>
 
             <section className="flex justify-between items-center">
                <Link
@@ -47,7 +47,7 @@ const ProductCard = ({ p }) => {
                   </svg>
                </Link>
 
-               <button className="p-2 rounded-full bg-[#466990] text-white hover:bg-[#1c4563]" onClick={() => addToCartHandler(p, 1)}>
+               <button className="p-3 rounded-full bg-[#466990] text-white hover:bg-[#1c4563]" onClick={() => addToCartHandler(p, 1)}>
                   <AiOutlineShoppingCart size={25} />
                </button>
                <HeartIcon product={p} />
