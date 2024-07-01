@@ -35,8 +35,16 @@ main {
    margin-bottom: 1rem;
 }
 
+.banner-promo {
+   font-family: var(--crimson);
+}
+
 .banner-image {
    width: 45%;
+}
+
+.banner-image-1 {
+   width: 60%;
 }
 
 .container {
