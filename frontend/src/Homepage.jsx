@@ -69,8 +69,8 @@ const Homepage = () => {
                <p className="font-bold text-4xl banner-promo">Libertate creativă, principala prioritate</p>
                <br />
                <p className="text-2xl">
-                  Nu te mulțumesc culorile componentelor? Dorești alte dimensiuni, umbre și efecte? Fără probleme, ai libera alegere de a le adapta după bunul tău plac, fără
-                  de depinde de limitările tehnologice și creative impuse de către alte tehnologii.
+                  Nu te mulțumesc culorile componentelor? Dorești alte dimensiuni, umbre și efecte? Fără probleme, ai libera alegere de a le adapta după bunul tău plac, fără a
+                  depinde de limitările tehnologice și creative impuse de către alte tehnologii.
                </p>
             </div>
          </div>

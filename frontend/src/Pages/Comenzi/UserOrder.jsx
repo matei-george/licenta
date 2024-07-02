@@ -39,7 +39,7 @@ const UserOrder = () => {
                               </td>
                               <td className="py-2 text-center">{order._id}</td>
                               <td className="py-2 text-center">{order.createdAt.substring(0, 10)}</td>
-                              <td className="py-2 text-center">$ {order.totalPrice}</td>
+                              <td className="py-2 text-center">LEI {order.totalPrice}</td>
                               <td className="py-2 text-center">
                                  {order.isPaid ? (
                                     <p className="p-1 text-center bg-green-400 w-24 mx-auto rounded-full">Completat</p>
@@ -49,7 +49,7 @@ const UserOrder = () => {
                               </td>
                               <td className="py-2 text-center">
                                  <Link to={`/order/${order._id}`}>
-                                    <button className="bg-pink-400 text-black py-2 px-3 rounded">Detalii</button>
+                                    <button className=" text-black py-2 px-3 rounded">Detalii</button>
                                  </Link>
                               </td>
                            </tr>

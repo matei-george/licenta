@@ -98,6 +98,9 @@ const Navbar = () => {
                            <Link to="/profile" className="block px-4 py-2 hover:font-bold">
                               Profil
                            </Link>
+                           <Link to="/user-orders" className="block px-4 py-2 hover:font-bold">
+                              Comenzile mele
+                           </Link>
                            <button onClick={logoutHandler} className="w-full text-center p-2 hover:font-bold delogare-button">
                               Delogare
                            </button>

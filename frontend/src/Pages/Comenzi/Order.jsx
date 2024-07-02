@@ -28,7 +28,7 @@ const Order = () => {
                type: "resetOptions",
                value: {
                   "client-id": paypal.clientId,
-                  currency: "EUR",
+                  currency: "RON",
                },
             });
             paypalDispatch({ type: "setLoadingStatus", value: "pending" });
